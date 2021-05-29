@@ -10,6 +10,15 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
+    "no-unused-vars": [
+      "error",
+      {
+        vars: "all",
+        args: "after-used",
+        varsIgnorePattern: "^_",
+        argsIgnorePattern: "^_",
+      },
+    ],
     "file-progress/activate": 1,
     "no-console": "off",
     "no-new-func": "error",
@@ -23,7 +32,7 @@ module.exports = {
     "no-warning-comments": [
       "error",
       {
-        terms: ["fixme", "xxx"],
+        terms: ["todo", "fixme", "xxx"],
         location: "anywhere",
       },
     ],
