@@ -15,19 +15,19 @@
     "lint:all": "eslint -c prettier.js -c react.js -c typescript.js ."
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.25.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-file-progress": "^1.1.1",
-    "eslint-plugin-import": "^2.23.3",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.23.2",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "@typescript-eslint/eslint-plugin": "^4",
+    "eslint-config-prettier": "^8",
+    "eslint-plugin-file-progress": "^1",
+    "eslint-plugin-import": "^2",
+    "eslint-plugin-prettier": "^3",
+    "eslint-plugin-react": "^7",
+    "eslint-plugin-react-hooks": "^4"
   },
   "peerDependencies": {
-    "eslint": "^7.27.0",
-    "prettier": "^2.3.0"
+    "eslint": "^7",
+    "prettier": "^2"
   },
   "devDependencies": {
-    "typescript": "^4.3.2"
+    "typescript": "^4"
   }
 }
