@@ -1,45 +1,22 @@
 module.exports = {
-  plugins: ["file-progress"],
-  extends: [
-    "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-  ],
+  extends: ["eslint:recommended"],
+  plugins: ["file-progress", "import"],
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: "module",
   },
   rules: {
-    "no-unused-vars": [
-      "error",
-      {
-        vars: "all",
-        args: "after-used",
-        varsIgnorePattern: "^_",
-        argsIgnorePattern: "^_",
-      },
-    ],
+    // show progress while linting
     "file-progress/activate": 1,
-    "no-console": "off",
-    "no-new-func": "error",
-    curly: "error",
-    "no-underscore-dangle": [
-      "error",
-      {
-        allowAfterThis: true,
-      },
-    ],
-    "no-warning-comments": [
-      "error",
-      {
-        terms: ["todo", "fixme", "xxx"],
-        location: "anywhere",
-      },
-    ],
+
+    // import plugin is slow, only enable the critical stuff
+    "import/export": "error",
     "import/first": "error",
-    "import/no-useless-path-segments": "error",
-    "import/no-mutable-exports": "error",
+    "import/named": "error",
     "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-useless-path-segments": "error",
     "import/order": [
       "error",
       {
@@ -54,50 +31,29 @@ module.exports = {
         ],
       },
     ],
-    "import/namespace": "off",
-    "import/default": "off",
-    "import/no-named-as-default": "off",
-    "import/no-named-as-default-member": "off",
-    "import/no-unresolved": "off",
-    "prefer-arrow-callback": [
+
+    // require curly braces everywhere
+    curly: "error",
+
+    // avoid eval
+    "no-eval": "error",
+    "no-implied-eval": "error",
+    "no-new-func": "error",
+
+    // unused vars must have `_` prefix
+    "no-unused-vars": [
       "error",
       {
-        allowNamedFunctions: true,
+        vars: "all",
+        args: "after-used",
+        varsIgnorePattern: "^_",
+        argsIgnorePattern: "^_",
       },
     ],
-    "no-restricted-imports": [
-      "error",
-      {
-        paths: [
-          {
-            name: "lodash",
-            importNames: ["get"],
-            message: "Use optional chaining instead of lodash.get.",
-          },
-          {
-            name: "lodash/get",
-            message: "Use optional chaining instead of lodash.get.",
-          },
-        ],
-      },
-    ],
+
     "no-restricted-syntax": [
       "error",
-      {
-        selector: "MethodDefinition[kind='get'], Property[kind='get']",
-        message:
-          "Property getters are not allowed; prefer function syntax instead.",
-      },
-      {
-        selector: "MethodDefinition[kind='set'], Property[kind='set']",
-        message:
-          "Property setters are not allowed; prefer function syntax instead.",
-      },
-      {
-        selector:
-          "CallExpression[callee.object.name='console'][callee.property.name!=/^(warn|error|debug|assert)$/]",
-        message: "Unexpected property on console object was called",
-      },
+      // prefer triple equals (eqeqeq), except prefer double equals for null and undefined
       {
         selector:
           "BinaryExpression:matches([operator='=='], [operator='!=']):matches([left.type=Literal][left.raw=null], [right.type=Literal][right.raw=null])",
@@ -116,10 +72,23 @@ module.exports = {
         message:
           'Use strict equality operators "===" and "!==", except when checking for null or undefined.',
       },
+    ],
+
+    "no-underscore-dangle": [
+      "error",
       {
-        selector: "TSPrivateIdentifier",
-        message: "Use private instead of #",
+        allowAfterThis: true,
       },
     ],
+
+    // avoid TO.DO and FIX.ME comments, create a ticket to track future work
+    "no-warning-comments": [
+      "error",
+      {
+        location: "anywhere",
+      },
+    ],
+
+    "prefer-arrow-callback": "error",
   },
 };

@@ -59,6 +59,16 @@ module.exports = {
 
         // require all cases to be checked in switch statements
         "@typescript-eslint/switch-exhaustiveness-check": "error",
+
+        "no-restricted-syntax": [
+          "error",
+          // #member is slow, see https://github.com/foxglove/studio/pull/430
+          {
+            selector: "TSPrivateIdentifier",
+            message:
+              "Unexpected #member syntax, prefer private keyword for performance",
+          },
+        ],
       },
     },
   ],
