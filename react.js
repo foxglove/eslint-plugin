@@ -1,11 +1,7 @@
 module.exports = {
+  extends: ["plugin:react/recommended", "plugin:react-hooks/recommended"],
   env: {
     browser: true,
-  },
-  plugins: ["react", "react-hooks"],
-  extends: ["plugin:react/recommended"],
-  parserOptions: {
-    ecmaFeatures: { jsx: true },
   },
   settings: {
     react: {
@@ -13,16 +9,7 @@ module.exports = {
     },
   },
   rules: {
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
     "react/no-unused-prop-types": "error",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": [
-      "error",
-      {
-        additionalHooks: "(useAsync(?!AppConfigurationValue))",
-      },
-    ],
+    "react/prop-types": "off", // slow, unnecessary with typescript
   },
 };
