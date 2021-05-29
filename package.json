@@ -1,9 +1,12 @@
 {
   "name": "@foxglove/eslint-config",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Foxglove base eslint configuration",
   "license": "MIT",
   "main": "index.js",
+  "files": [
+    "*.js"
+  ],
   "scripts": {
     "lint": "eslint .",
     "lint:prettier": "eslint --config prettier.js .",
