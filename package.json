@@ -9,9 +9,10 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "lint:prettier": "eslint --config prettier.js .",
-    "lint:react": "eslint --config react.js .",
-    "lint:typescript": "eslint --config typescript.js ."
+    "lint:prettier": "eslint -c prettier.js .",
+    "lint:react": "eslint -c react.js .",
+    "lint:typescript": "eslint -c typescript.js .",
+    "lint:all": "eslint -c prettier.js -c react.js -c typescript.js ."
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.25.0",

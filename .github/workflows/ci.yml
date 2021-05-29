@@ -18,3 +18,4 @@ jobs:
       - run: npm run lint:prettier
       - run: npm run lint:react
       - run: npm run lint:typescript
+      - run: npm run lint:all
