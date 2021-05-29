@@ -1,69 +1,31 @@
 module.exports = {
-  plugins: ["@typescript-eslint"],
-
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
       extends: [
-        "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:import/typescript",
       ],
       parser: "@typescript-eslint/parser",
-      parserOptions: {
-        project: "tsconfig.json",
-      },
       rules: {
-        "@typescript-eslint/ban-ts-comment": [
-          "error",
-          {
-            "ts-expect-error": "allow-with-description",
-            "ts-ignore": true,
-            "ts-nocheck": false,
-            "ts-check": true,
-          },
-        ],
-        "@typescript-eslint/no-inferrable-types": "off",
-        "@typescript-eslint/no-empty-function": "off",
-        "@typescript-eslint/no-implied-eval": "off",
-        "@typescript-eslint/no-misused-promises": "off",
-        "@typescript-eslint/no-floating-promises": "off",
-        "@typescript-eslint/restrict-template-expressions": "off",
-        "@typescript-eslint/no-unsafe-member-access": "off",
-        "@typescript-eslint/no-unsafe-return": "off",
-        "@typescript-eslint/no-unsafe-assignment": "off",
-        "@typescript-eslint/no-unsafe-call": "off",
-        "@typescript-eslint/require-await": "off",
-        "@typescript-eslint/prefer-regexp-exec": "off",
-        "@typescript-eslint/no-unnecessary-condition": "off",
+        // `<T>x` style assertions are not compatible with JSX code,
+        // so for consistency we prefer `x as T` everywhere.
         "@typescript-eslint/consistent-type-assertions": [
           "error",
           {
             assertionStyle: "as",
           },
         ],
-        "@typescript-eslint/no-explicit-any": "error",
-        "@typescript-eslint/prefer-nullish-coalescing": "error",
-        "@typescript-eslint/no-non-null-assertion": "error",
-        "@typescript-eslint/no-confusing-non-null-assertion": "error",
-        "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
-        "@typescript-eslint/prefer-includes": "error",
-        "@typescript-eslint/prefer-optional-chain": "error",
-        "@typescript-eslint/restrict-plus-operands": [
-          "error",
-          {
-            checkCompoundAssignments: true,
-          },
-        ],
-        "@typescript-eslint/switch-exhaustiveness-check": "error",
-        "@typescript-eslint/unbound-method": [
-          "error",
-          {
-            ignoreStatic: true,
-          },
-        ],
+
         "@typescript-eslint/explicit-module-boundary-types": "error",
+        "@typescript-eslint/no-confusing-non-null-assertion": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-non-null-assertion": "error",
+        "@typescript-eslint/no-shadow": "error",
+        "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+
+        // unused vars must have `_` prefix
         "@typescript-eslint/no-unused-vars": [
           "error",
           {
@@ -73,15 +35,30 @@ module.exports = {
             argsIgnorePattern: "^_",
           },
         ],
-        "@typescript-eslint/no-shadow": "error",
+
+        "@typescript-eslint/prefer-includes": "error",
+        "@typescript-eslint/prefer-nullish-coalescing": "error",
+        "@typescript-eslint/prefer-optional-chain": "error",
+
+        // both sides of `+` must be either string or number
+        "@typescript-eslint/restrict-plus-operands": [
+          "error",
+          {
+            checkCompoundAssignments: true,
+          },
+        ],
+
+        // require explicit boolean checks in conditionals
         "@typescript-eslint/strict-boolean-expressions": [
           "error",
           {
             allowString: false,
             allowNumber: false,
-            allowAny: true,
           },
         ],
+
+        // require all cases to be checked in switch statements
+        "@typescript-eslint/switch-exhaustiveness-check": "error",
       },
     },
   ],
