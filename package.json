@@ -1,6 +1,6 @@
 {
   "name": "@foxglove/eslint-config",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Foxglove base eslint configuration",
   "license": "MIT",
   "main": "index.js",
