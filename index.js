@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["eslint:recommended"],
+  extends: ["eslint:recommended", "plugin:prettier/recommended"],
   plugins: ["file-progress", "import"],
   parserOptions: {
     ecmaVersion: 2020,
@@ -88,7 +88,5 @@ module.exports = {
         location: "anywhere",
       },
     ],
-
-    "prefer-arrow-callback": "error",
   },
 };

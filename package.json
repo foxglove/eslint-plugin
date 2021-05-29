@@ -9,10 +9,9 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "lint:prettier": "eslint -c prettier.js .",
     "lint:react": "eslint -c react.js .",
     "lint:typescript": "eslint -c typescript.js .",
-    "lint:all": "eslint -c prettier.js -c react.js -c typescript.js ."
+    "lint:all": "eslint -c react.js -c typescript.js ."
   },
   "peerDependencies": {
     "eslint": "^7",
