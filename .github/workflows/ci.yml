@@ -16,5 +16,6 @@ jobs:
           node-version: 16.x
       - run: npm install
       - run: npm run lint
-      - run: npm run lint -- --config react.js
-      - run: npm run lint -- --config typescript.js
+      - run: npm run lint:prettier
+      - run: npm run lint:react
+      - run: npm run lint:typescript

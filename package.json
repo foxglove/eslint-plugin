@@ -5,7 +5,10 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:prettier": "eslint --config prettier.js .",
+    "lint:react": "eslint --config react.js .",
+    "lint:typescript": "eslint --config typescript.js ."
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.25.0",
