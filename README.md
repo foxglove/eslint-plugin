@@ -10,7 +10,7 @@ Err on the side of conservative changes to this repo - multiple Foxglove project
 
 The following configurations are available:
 
-- `@foxglove/eslint-config` (automatically imported)
+- `@foxglove/eslint-config` (automatically imported by other configs)
 - `@foxglove/eslint-config/react`
 - `@foxglove/eslint-config/typescript`
 
@@ -20,13 +20,13 @@ The following configurations are available:
 yarn add -D \
     eslint \
     @foxglove/eslint-config \
-    @typescript-eslint/eslint-plugin
-    @typescript-eslint/parser
+    @typescript-eslint/eslint-plugin \
+    @typescript-eslint/parser \
     eslint-config-prettier \
     eslint-plugin-file-progress \
     eslint-plugin-import \
-    eslint-plugin-prettier
-    eslint-plugin-react
+    eslint-plugin-prettier \
+    eslint-plugin-react \
     eslint-plugin-react-hooks
 ```
 
