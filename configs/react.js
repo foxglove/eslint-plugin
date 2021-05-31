@@ -1,6 +1,6 @@
 module.exports = {
   extends: [
-    "./index.js",
+    "plugin:@foxglove/base",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
   ],

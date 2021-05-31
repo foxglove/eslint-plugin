@@ -1,25 +1,25 @@
-# @foxglove/eslint-config
+# @foxglove/eslint-plugin
 
-[![npm package](https://img.shields.io/npm/v/@foxglove/eslint-config)](https://www.npmjs.com/package/@foxglove/eslint-config)
+[![npm package](https://img.shields.io/npm/v/@foxglove/eslint-plugin)](https://www.npmjs.com/package/@foxglove/eslint-plugin)
 
-Foxglove default eslint configuration.
+Foxglove default eslint configuration & rules.
 
-Err on the side of conservative changes to this repo - multiple Foxglove projects should successfully adopt a change before making it a default.
+Please err on the side of conservative changes to this repo - multiple Foxglove projects should adopt a change before making it a default.
 
 ## Installation
 
 The following configurations are available:
 
-- `@foxglove/eslint-config` (automatically imported by other configs)
-- `@foxglove/eslint-config/react`
-- `@foxglove/eslint-config/typescript`
+- `plugin:@foxglove/base` (automatically imported by other configurations)
+- `plugin:@foxglove/react`
+- `plugin:@foxglove/typescript`
 
 **Typescript + React Example**
 
 ```sh
 yarn add -D \
     eslint \
-    @foxglove/eslint-config \
+    @foxglove/eslint-plugin \
     @typescript-eslint/eslint-plugin \
     @typescript-eslint/parser \
     eslint-config-prettier \
@@ -34,10 +34,7 @@ In your `.eslintrc.js`:
 
 ```js
 module.exports = {
-  extends: [
-    "@foxglove/eslint-config/react",
-    "@foxglove/eslint-config/typescript",
-  ],
+  extends: ["plugin:@foxglove/react", "plugin:@foxglove/typescript"],
   parserOptions: {
     project: "tsconfig.json",
   },
@@ -45,6 +42,8 @@ module.exports = {
 ```
 
 ## Releasing
+
+You must use npm 7+ (not yarn) to test this repo locally, due to the self link in `package.json`.
 
 ```sh
 npm version [major|minor|patch]
