@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "lint:base": "eslint --no-eslintrc --config ./configs/base.js --env node .",
     "lint:react": "eslint --no-eslintrc --config ./configs/react.js --env node .",
-    "lint:typescript": "eslint --no-eslintrc --config ./configs/typescript.js --env node .",
+    "lint:typescript": "eslint --no-eslintrc --config ./configs/typescript.js --parser-options '{project:\"tsconfig.json\"}' --env node *.ts",
     "lint:all": "npm run lint && npm run lint:base && npm run lint:react && npm run lint:typescript"
   },
   "peerDependencies": {

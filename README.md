@@ -35,12 +35,20 @@ In your `.eslintrc.js`:
 
 ```js
 module.exports = {
-  extends: ["plugin:@foxglove/react", "plugin:@foxglove/typescript"],
-  parserOptions: {
-    project: "tsconfig.json",
-  },
+  extends: ["plugin:@foxglove/react"],
+  overrides: [
+    {
+      files: ["*.ts", "*.tsx"],
+      extends: ["plugin:@foxglove/typescript"],
+      parserOptions: {
+        project: "tsconfig.json",
+      },
+    },
+  ],
 };
 ```
+
+You can add `"plugin:@foxglove/typescript"` to the top level `extends` instead of using `overrides` if your project contains no `.js` files.
 
 ## Releasing
 
