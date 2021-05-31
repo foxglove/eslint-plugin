@@ -1,26 +1,29 @@
 {
-  "name": "@foxglove/eslint-config",
+  "name": "@foxglove/eslint-plugin",
   "version": "0.3.0",
-  "description": "Foxglove default eslint configuration",
+  "description": "Foxglove eslint configuration",
   "license": "MIT",
   "main": "index.js",
   "files": [
-    "*.js"
+    "**/*.js"
   ],
   "scripts": {
     "lint": "eslint .",
-    "lint:react": "eslint -c react.js .",
-    "lint:typescript": "eslint -c typescript.js .",
-    "lint:all": "eslint -c react.js -c typescript.js ."
+    "lint:base": "eslint --no-eslintrc --config ./configs/base.js --env node .",
+    "lint:react": "eslint --no-eslintrc --config ./configs/react.js --env node .",
+    "lint:typescript": "eslint --no-eslintrc --config ./configs/typescript.js --env node .",
+    "lint:all": "npm run lint && npm run lint:base && npm run lint:react && npm run lint:typescript"
   },
   "peerDependencies": {
     "eslint": "^7",
     "eslint-config-prettier": "^8",
     "eslint-plugin-file-progress": "^1",
     "eslint-plugin-import": "^2",
-    "eslint-plugin-prettier": "^3"
+    "eslint-plugin-prettier": "^3",
+    "prettier": "^2"
   },
   "devDependencies": {
+    "@foxglove/eslint-plugin": "file:.",
     "@typescript-eslint/eslint-plugin": "^4",
     "@typescript-eslint/parser": "^4",
     "eslint-plugin-react": "^7",

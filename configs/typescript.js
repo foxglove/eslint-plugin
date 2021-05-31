@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["./index.js"],
+  extends: ["plugin:@foxglove/base"],
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
@@ -10,6 +10,9 @@ module.exports = {
       ],
       parser: "@typescript-eslint/parser",
       rules: {
+        // Avoid #member syntax for performance
+        "@foxglove/no-private-identifier": "error",
+
         // `<T>x` style assertions are not compatible with JSX code,
         // so for consistency we prefer `x as T` everywhere.
         "@typescript-eslint/consistent-type-assertions": [
@@ -60,16 +63,6 @@ module.exports = {
 
         // require all cases to be checked in switch statements
         "@typescript-eslint/switch-exhaustiveness-check": "error",
-
-        "no-restricted-syntax": [
-          "error",
-          // #member is slow, see https://github.com/foxglove/studio/pull/430
-          {
-            selector: "TSPrivateIdentifier",
-            message:
-              "Unexpected #member syntax, prefer private keyword for performance",
-          },
-        ],
       },
     },
   ],
