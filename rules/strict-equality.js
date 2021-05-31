@@ -1,9 +1,9 @@
 const eqeqeq = require("eslint/lib/rules/eqeqeq");
 const astUtils = require("eslint/lib/rules/utils/ast-utils");
 
-// - Prefer double equals when comparing with undefined.
-// - Prefer undefined over null.
-// - Prefer triple equals everywhere else.
+// - Prefer double equals when comparing with undefined
+// - Prefer undefined over null
+// - Prefer triple equals everywhere else
 module.exports = {
   meta: {
     type: "suggestion",
@@ -24,22 +24,26 @@ module.exports = {
 
     return {
       BinaryExpression: function (node) {
+        function report(node, loc) {
+          let expectedOp = node.operator.substring(0, 2);
+
+          context.report({
+            node,
+            loc,
+            message: `Prefer 'x ${expectedOp} undefined' to catch both null and undefined`,
+          });
+        }
+
         // If either side is undefined, prefer double equals
         if (isUndefinedLiteral(node.left) || isUndefinedLiteral(node.right)) {
           if (node.operator === "===" || node.operator === "!==") {
-            let expectedOp = node.operator.substring(0, 2);
-
             const operatorToken = sourceCode.getFirstTokenBetween(
               node.left,
               node.right,
               (token) => token.value === node.operator
             );
 
-            context.report({
-              node,
-              loc: operatorToken.loc,
-              message: `Prefer 'x ${expectedOp} undefined' to check both null and undefined`,
-            });
+            report(node, operatorToken.loc);
           }
         }
 
@@ -48,11 +52,7 @@ module.exports = {
           astUtils.isNullLiteral(node.left) ||
           astUtils.isNullLiteral(node.right)
         ) {
-          let expectedOp = node.operator.substring(0, 2);
-          context.report({
-            node,
-            message: `Prefer 'x ${expectedOp} undefined' to check both null and undefined`,
-          });
+          report(node, node.loc);
         }
 
         // Otherwise, fall through to eqeqeq rule
