@@ -9,6 +9,12 @@ const LICENSE_HEADER = `
 `.trim();
 
 module.exports = {
+  meta: {
+    type: "suggestion",
+    fixable: "code",
+    schema: [],
+  },
+
   create: (context) => {
     return {
       Program: () => {
