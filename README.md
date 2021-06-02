@@ -23,7 +23,6 @@ yarn add -D \
     @typescript-eslint/parser \
     eslint \
     eslint-config-prettier \
-    eslint-plugin-file-progress \
     eslint-plugin-import \
     eslint-plugin-prettier \
     eslint-plugin-react \

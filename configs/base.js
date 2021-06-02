@@ -1,14 +1,11 @@
 module.exports = {
   extends: ["eslint:recommended", "plugin:prettier/recommended"],
-  plugins: ["@foxglove", "file-progress", "import"],
+  plugins: ["@foxglove", "import"],
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: "module",
   },
   rules: {
-    // show progress while linting
-    "file-progress/activate": 1,
-
     // import plugin is slow, only enable the critical stuff
     "import/export": "error",
     "import/first": "error",
