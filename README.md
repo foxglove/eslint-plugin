@@ -10,7 +10,7 @@ Please err on the side of conservative changes to this repo - multiple Foxglove 
 
 The following configurations are available:
 
-- `plugin:@foxglove/base` (automatically imported by other configurations)
+- `plugin:@foxglove/base`
 - `plugin:@foxglove/react`
 - `plugin:@foxglove/typescript`
 
@@ -35,7 +35,7 @@ In your `.eslintrc.js`:
 
 ```js
 module.exports = {
-  extends: ["plugin:@foxglove/react"],
+  extends: ["plugin:@foxglove/base", "plugin:@foxglove/react"],
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
