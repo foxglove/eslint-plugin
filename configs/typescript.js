@@ -21,9 +21,12 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": "error",
     "@typescript-eslint/no-confusing-non-null-assertion": "error",
     "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/no-non-null-assertion": "error",
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+
+    // The ! assertion may be used sparingly in cases where tsc cannot automatically do bounds
+    // checking such as indexed array iteration
+    "@typescript-eslint/no-non-null-assertion": "off",
 
     // unused vars must have `_` prefix
     "@typescript-eslint/no-unused-vars": [
