@@ -28,6 +28,9 @@ module.exports = {
     // checking such as indexed array iteration
     "@typescript-eslint/no-non-null-assertion": "off",
 
+    // Printing Error variables into template strings is a common pattern
+    "@typescript-eslint/restrict-template-expressions": "off",
+
     // unused vars must have `_` prefix
     "@typescript-eslint/no-unused-vars": [
       "error",
