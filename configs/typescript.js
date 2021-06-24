@@ -51,15 +51,6 @@ module.exports = {
       },
     ],
 
-    // require explicit boolean checks in conditionals
-    "@typescript-eslint/strict-boolean-expressions": [
-      "error",
-      {
-        allowString: false,
-        allowNumber: false,
-      },
-    ],
-
     // require all cases to be checked in switch statements
     "@typescript-eslint/switch-exhaustiveness-check": "error",
   },
