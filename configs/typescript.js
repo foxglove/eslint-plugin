@@ -53,5 +53,20 @@ module.exports = {
 
     // require all cases to be checked in switch statements
     "@typescript-eslint/switch-exhaustiveness-check": "error",
+
+    // require strict boolean comparisons for all types, except allow
+    // nullable string conditionals to avoid verbose "empty or undefined" checks
+    "@typescript-eslint/strict-boolean-expressions": [
+      "error",
+      {
+        allowString: true,
+        allowNullableString: true,
+        allowNumber: false,
+        allowNullableNumber: false,
+        allowNullableBoolean: false,
+        allowNullableObject: false,
+        allowAny: false,
+      },
+    ],
   },
 };
