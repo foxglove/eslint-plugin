@@ -51,11 +51,11 @@ You can add `"plugin:@foxglove/typescript"` to the top level `extends` instead o
 
 ## Releasing
 
-You must use npm 7+ (not yarn) to test this repo locally, due to the self link in `package.json`.
+**Note**: You must use npm 7+ (not yarn) to test this repo locally, due to the self link in `package.json`.
 
 ```sh
 npm version [major|minor|patch]
 git push && git push --tags
 ```
 
-In the GitHub UI, `Edit tag` then `Publish release`, and it will be published to NPM automatically.
+GitHub Actions will automatically publish the tag to NPM.
