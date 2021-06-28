@@ -9,9 +9,10 @@
   ],
   "scripts": {
     "lint": "eslint .",
+    "lint:jest": "eslint --config ./configs/jest.js",
     "lint:react": "eslint --config ./configs/react.js",
     "lint:typescript": "eslint --config ./configs/typescript.js *.ts",
-    "lint:all": "npm run lint && npm run lint:react && npm run lint:typescript"
+    "lint:all": "npm run lint && npm run lint:jest && npm run lint:react && npm run lint:typescript"
   },
   "peerDependencies": {
     "eslint": "^7",
@@ -24,6 +25,7 @@
     "@foxglove/eslint-plugin": "file:.",
     "@typescript-eslint/eslint-plugin": "^4",
     "@typescript-eslint/parser": "^4",
+    "eslint-plugin-jest": "^24",
     "eslint-plugin-react": "^7",
     "eslint-plugin-react-hooks": "^4",
     "typescript": "^4"
