@@ -11,6 +11,7 @@ Please err on the side of conservative changes to this repo - multiple Foxglove 
 The following configurations are available:
 
 - `plugin:@foxglove/base`
+- `plugin:@foxglove/jest`
 - `plugin:@foxglove/react`
 - `plugin:@foxglove/typescript`
 
@@ -24,6 +25,7 @@ yarn add -D \
     eslint \
     eslint-config-prettier \
     eslint-plugin-import \
+    eslint-plugin-jest \
     eslint-plugin-prettier \
     eslint-plugin-react \
     eslint-plugin-react-hooks \
@@ -34,7 +36,11 @@ In your `.eslintrc.js`:
 
 ```js
 module.exports = {
-  extends: ["plugin:@foxglove/base", "plugin:@foxglove/react"],
+  extends: [
+    "plugin:@foxglove/base",
+    "plugin:@foxglove/jest",
+    "plugin:@foxglove/react",
+  ],
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
