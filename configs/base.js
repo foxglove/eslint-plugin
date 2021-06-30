@@ -29,7 +29,7 @@ module.exports = {
       },
     ],
 
-    // require double equal for undefined, triple equal everywhere else
+    // require double equal for null and undefined, triple equal everywhere else
     "@foxglove/strict-equality": "error",
 
     // require curly braces everywhere
