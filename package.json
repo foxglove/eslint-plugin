@@ -8,10 +8,10 @@
     "**/*.js"
   ],
   "scripts": {
-    "lint": "eslint .",
-    "lint:jest": "eslint --config ./configs/jest.js",
-    "lint:react": "eslint --config ./configs/react.js",
-    "lint:typescript": "eslint --config ./configs/typescript.js *.ts",
+    "lint": "eslint --report-unused-disable-directives .",
+    "lint:jest": "eslint --report-unused-disable-directives --config ./configs/jest.js",
+    "lint:react": "eslint --report-unused-disable-directives --config ./configs/react.js",
+    "lint:typescript": "eslint --report-unused-disable-directives --config ./configs/typescript.js *.ts",
     "lint:all": "npm run lint && npm run lint:jest && npm run lint:react && npm run lint:typescript"
   },
   "peerDependencies": {
