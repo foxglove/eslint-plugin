@@ -55,13 +55,15 @@ module.exports = {
 
 You can add `"plugin:@foxglove/typescript"` to the top level `extends` instead of using `overrides` if your project contains no `.js` files.
 
+## License
+
+@foxglove/eslint-plugin is released under the [MIT License](/LICENSE.md).
+
 ## Releasing
 
 **Note**: You must use npm 7+ (not yarn) to test this repo locally, due to the self link in `package.json`.
 
 ```sh
-npm version [major|minor|patch]
-git push && git push --tags
+tag=$(npm version minor) && echo "$tag"
+git push && git push origin "$tag"
 ```
-
-GitHub Actions will automatically publish the tag to NPM.
