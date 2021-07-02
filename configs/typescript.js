@@ -8,6 +8,7 @@ module.exports = {
   rules: {
     // Avoid #member syntax for performance
     "@foxglove/no-private-identifier": "error",
+    "@foxglove/no-meaningless-void-operator": "error",
 
     // `<T>x` style assertions are not compatible with JSX code,
     // so for consistency we prefer `x as T` everywhere.
