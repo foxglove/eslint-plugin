@@ -1,8 +1,8 @@
+// -*- jsonc -*-
 {
+  "extends": "@foxglove/tsconfig/base",
   "compilerOptions": {
-    "target": "es2020",
-    "module": "es2020",
-    "strict": true,
+    "lib": ["es2020", "dom"],
     "noEmit": true
   }
 }

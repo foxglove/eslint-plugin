@@ -23,7 +23,8 @@ jobs:
           restore-keys: v1-${{ runner.os }}-node-
 
       - run: npm install
-      - run: npm run lint:all
+      - run: npm run tsc
+      - run: npm run lint
 
       # publish version tags
       - name: npm publish
