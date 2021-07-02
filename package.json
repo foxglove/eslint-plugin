@@ -12,11 +12,12 @@
     "**/*.js"
   ],
   "scripts": {
-    "lint": "eslint --report-unused-disable-directives .",
+    "tsc": "tsc",
+    "lint": "npm run lint:base && npm run lint:jest && npm run lint:react && npm run lint:typescript",
+    "lint:base": "eslint --report-unused-disable-directives --config ./configs/base.js .",
     "lint:jest": "eslint --report-unused-disable-directives --config ./configs/jest.js",
     "lint:react": "eslint --report-unused-disable-directives --config ./configs/react.js",
-    "lint:typescript": "eslint --report-unused-disable-directives --config ./configs/typescript.js *.ts",
-    "lint:all": "npm run lint && npm run lint:jest && npm run lint:react && npm run lint:typescript"
+    "lint:typescript": "eslint --report-unused-disable-directives --config ./configs/typescript.js **/*.ts"
   },
   "peerDependencies": {
     "eslint": "^7",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@foxglove/eslint-plugin": "file:.",
+    "@foxglove/tsconfig": "1.0.0",
     "@typescript-eslint/eslint-plugin": "^4",
     "@typescript-eslint/parser": "^4",
     "eslint-plugin-jest": "^24",
