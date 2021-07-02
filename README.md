@@ -55,6 +55,10 @@ module.exports = {
 
 You can add `"plugin:@foxglove/typescript"` to the top level `extends` instead of using `overrides` if your project contains no `.js` files.
 
+## Rules
+
+See [rules/README.md](rules/README.md) for details on each rule.
+
 ## License
 
 @foxglove/eslint-plugin is released under the [MIT License](/LICENSE.md).
