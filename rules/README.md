@@ -6,7 +6,7 @@ The following rules are provided by `@foxglove/eslint-plugin`.
 
 ### [`@foxglove/no-meaningless-void-operator`](./no-meaningless-void-operator.js) 💭 🔧
 
-Disallow the `void` operator when its argument is already of type `void` or `undefined`.
+Disallow the `void` operator when its argument is already of type `void`, `undefined`, or `never`.
 
 The `void` operator is a useful tool to convey the programmer's intent to discard a value. For example, it is recommended as one way of suppressing [`@typescript-eslint/no-floating-promises`](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md) instead of adding `.catch()` to a promise.
 

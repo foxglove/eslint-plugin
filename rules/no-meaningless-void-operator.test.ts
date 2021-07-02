@@ -24,6 +24,9 @@ function maybeBaz(): number | undefined {
 function maybeNothing(): void | undefined {
   return;
 }
+function exit(): never {
+  throw new Error();
+}
 
 void foo(); // eslint-disable-line @foxglove/no-meaningless-void-operator
 void bar(); // eslint-disable-line @foxglove/no-meaningless-void-operator
@@ -32,6 +35,7 @@ void void baz(); // eslint-disable-line @foxglove/no-meaningless-void-operator
 void maybeBaz();
 void void maybeBaz(); // eslint-disable-line @foxglove/no-meaningless-void-operator
 void maybeNothing(); // eslint-disable-line @foxglove/no-meaningless-void-operator
+void exit(); // eslint-disable-line @foxglove/no-meaningless-void-operator
 
 // keep isolatedModules happy
 export default {};

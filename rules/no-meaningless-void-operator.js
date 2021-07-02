@@ -26,7 +26,8 @@ module.exports = {
           unionTypeParts(argType).every(
             (part) =>
               part.flags & ts.TypeFlags.Void ||
-              part.flags & ts.TypeFlags.Undefined
+              part.flags & ts.TypeFlags.Undefined ||
+              part.flags & ts.TypeFlags.Never
           )
         ) {
           context.report({
