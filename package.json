@@ -1,6 +1,6 @@
 {
   "name": "@foxglove/eslint-plugin",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "description": "Foxglove eslint configuration",
   "license": "MIT",
   "repository": {
