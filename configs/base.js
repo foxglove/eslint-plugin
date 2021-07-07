@@ -1,6 +1,6 @@
 module.exports = {
   extends: ["eslint:recommended", "plugin:prettier/recommended"],
-  plugins: ["@foxglove", "import"],
+  plugins: ["@foxglove", "import", "filenames"],
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: "module",
@@ -29,8 +29,11 @@ module.exports = {
       },
     ],
 
+    "filenames/match-exported": "error",
+
     // require double equal for null and undefined, triple equal everywhere else
     "@foxglove/strict-equality": "error",
+    "@foxglove/no-return-promise-resolve": "error",
 
     // require curly braces everywhere
     curly: "error",
@@ -65,5 +68,11 @@ module.exports = {
         location: "anywhere",
       },
     ],
+
+    "no-unused-expressions": "error",
+    "no-param-reassign": "error",
+    "no-useless-rename": "error",
+    "object-shorthand": "error",
+    "prefer-arrow-callback": ["error", { allowNamedFunctions: true }],
   },
 };

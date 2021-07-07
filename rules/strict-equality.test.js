@@ -1,4 +1,6 @@
 // Use --report-unused-disable-directives to validate errors
+/* eslint-disable no-unused-expressions */
+
 (x) => {
   // require double equals for null and undefined
   x === null; // eslint-disable-line @foxglove/strict-equality

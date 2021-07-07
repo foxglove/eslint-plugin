@@ -28,6 +28,7 @@ yarn add -D \
     @typescript-eslint/parser \
     eslint \
     eslint-config-prettier \
+    eslint-plugin-filenames \
     eslint-plugin-import \
     eslint-plugin-jest \
     eslint-plugin-prettier \

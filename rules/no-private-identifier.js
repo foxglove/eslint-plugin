@@ -5,9 +5,9 @@ module.exports = {
     schema: [],
   },
 
-  create: function (context) {
+  create(context) {
     return {
-      TSPrivateIdentifier: function (node) {
+      TSPrivateIdentifier: (node) => {
         context.report({
           node,
           message: `Unexpected '${node.escapedText}', prefer private keyword for performance`,

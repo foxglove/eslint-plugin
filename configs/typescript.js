@@ -9,7 +9,6 @@ module.exports = {
     // Avoid #member syntax for performance
     "@foxglove/no-private-identifier": "error",
     "@foxglove/no-meaningless-void-operator": "error",
-    "@foxglove/no-return-promise-resolve": "error",
 
     // `<T>x` style assertions are not compatible with JSX code,
     // so for consistency we prefer `x as T` everywhere.
@@ -23,8 +22,12 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": "error",
     "@typescript-eslint/no-confusing-non-null-assertion": "error",
     "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-floating-promises": "error",
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": "error",
 
     // The ! assertion may be used sparingly in cases where tsc cannot automatically do bounds
     // checking such as indexed array iteration
@@ -44,6 +47,10 @@ module.exports = {
     "@typescript-eslint/prefer-includes": "error",
     "@typescript-eslint/prefer-nullish-coalescing": "error",
     "@typescript-eslint/prefer-optional-chain": "error",
+    "@typescript-eslint/promise-function-async": "error",
+
+    // Async functions without await are used to satisfy interface requirements
+    "@typescript-eslint/require-await": "off",
 
     // both sides of `+` must be either string or number
     "@typescript-eslint/restrict-plus-operands": [
@@ -52,6 +59,8 @@ module.exports = {
         checkCompoundAssignments: true,
       },
     ],
+
+    "@typescript-eslint/return-await": ["error", "always"],
 
     // require all cases to be checked in switch statements
     "@typescript-eslint/switch-exhaustiveness-check": "error",

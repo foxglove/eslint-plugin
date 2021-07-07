@@ -17,7 +17,7 @@ module.exports = {
     const checker = parserServices.program.getTypeChecker();
 
     return {
-      [`UnaryExpression[operator="void"]`]: function (node) {
+      [`UnaryExpression[operator="void"]`]: (node) => {
         const argTsNode = parserServices.esTreeNodeToTSNodeMap.get(
           node.argument
         );
