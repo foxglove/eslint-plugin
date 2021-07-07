@@ -31,14 +31,12 @@ async function noReturnPromiseResolve() {
 
   () => Promise.resolve(42);
   async () => Promise.resolve(42); // eslint-disable-line @foxglove/no-return-promise-resolve
-  // eslint-disable-next-line @typescript-eslint/require-await
   async () => {
     Promise.resolve(42);
   };
 
   () => Promise.reject(42);
   async () => Promise.reject(42); // eslint-disable-line @foxglove/no-return-promise-resolve
-  // eslint-disable-next-line @typescript-eslint/require-await
   async () => {
     Promise.reject(42);
   };
