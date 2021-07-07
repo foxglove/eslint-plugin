@@ -49,6 +49,9 @@ module.exports = {
     "@typescript-eslint/prefer-optional-chain": "error",
     "@typescript-eslint/promise-function-async": "error",
 
+    // Async functions without await are used to satisfy interface requirements
+    "@typescript-eslint/require-await": "off",
+
     // both sides of `+` must be either string or number
     "@typescript-eslint/restrict-plus-operands": [
       "error",
