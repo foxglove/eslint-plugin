@@ -14,7 +14,7 @@ module.exports = {
     },
   },
 
-  create: function (context) {
+  create(context) {
     const tripleEq = eqeqeq.create(context);
     const sourceCode = context.getSourceCode();
 
@@ -23,7 +23,7 @@ module.exports = {
     }
 
     return {
-      BinaryExpression: function (node) {
+      BinaryExpression: (node) => {
         function preferDoubleEqual(node, loc, literal) {
           let expectedOp = node.operator.substring(0, 2);
 
