@@ -35,7 +35,7 @@ function bar() {
 void bar(); // discarding a number
 ```
 
-### [`@foxglove/no-return-promise-resolve`](./no-return-promise-resolve.js) 💭 🔧
+### [`@foxglove/no-return-promise-resolve`](./no-return-promise-resolve.js) 🔧
 
 Disallow returning `Promise.resolve(...)` or `Promise.reject(...)` inside an async function. This is redundant since an async function will always return a Promise — use `return` or `throw` directly instead.
 
