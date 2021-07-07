@@ -6,6 +6,10 @@ Foxglove default eslint configuration & rules.
 
 Please err on the side of conservative changes to this repo - multiple Foxglove projects should adopt a change before making it a default.
 
+## Rules
+
+See [rules/README.md](rules/README.md) for details on each rule.
+
 ## Installation
 
 The following configurations are available:
@@ -54,10 +58,6 @@ module.exports = {
 ```
 
 You can add `"plugin:@foxglove/typescript"` to the top level `extends` instead of using `overrides` if your project contains no `.js` files.
-
-## Rules
-
-See [rules/README.md](rules/README.md) for details on each rule.
 
 ## License
 
