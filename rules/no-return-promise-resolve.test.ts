@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/promise-function-async */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/return-await */
 
 // wrap in an async function to ensure no false positive in nested non-async functions
 async function noReturnPromiseResolve() {

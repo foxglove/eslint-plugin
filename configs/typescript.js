@@ -60,6 +60,8 @@ module.exports = {
       },
     ],
 
+    "@typescript-eslint/return-await": ["error", "always"],
+
     // require all cases to be checked in switch statements
     "@typescript-eslint/switch-exhaustiveness-check": "error",
 
