@@ -1,11 +1,14 @@
 module.exports = {
   extends: ["eslint:recommended", "plugin:prettier/recommended"],
-  plugins: ["@foxglove", "import", "filenames"],
+  plugins: ["@foxglove", "import", "filenames", "es"],
   parserOptions: {
     ecmaVersion: 2020,
     sourceType: "module",
   },
   rules: {
+    // even new Safari versions do not support regexp lookbehinds
+    "es/no-regexp-lookbehind-assertions": "error",
+
     // import plugin is slow, only enable the critical stuff
     "import/export": "error",
     "import/first": "error",
