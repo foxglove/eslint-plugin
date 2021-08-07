@@ -8,17 +8,24 @@ void (async () => {
   await (async function () {})(); // eslint-disable-line @typescript-eslint/no-empty-function
 })();
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(str: string, num: number, wut: any, maybeStr?: string, maybeNum?: number) => {
+(
+  str: string,
+  num: number,
+  wut: any, // eslint-disable-line @typescript-eslint/no-explicit-any
+  maybeStr?: string,
+  maybeNum?: number,
+  maybeObj?: Record<string, unknown>
+) => {
   // strict boolean checks are required for everything except strings
   str ? 0 : 1; // allowed
   maybeStr ? 0 : 1; // allowed
   num ? 0 : 1; // eslint-disable-line @typescript-eslint/strict-boolean-expressions
   num == 0 ? 0 : 1; // eslint-disable-line @foxglove/strict-equality
-  num === 0 ? 0 : 1; // correct
+  num === 0 ? 0 : 1; // allowed
   maybeNum ? 0 : 1; // eslint-disable-line @typescript-eslint/strict-boolean-expressions
+  maybeObj ? 0 : 1; // allowed
   wut ? 0 : 1; // eslint-disable-line @typescript-eslint/strict-boolean-expressions
-  wut == null ? 0 : 1;
+  wut == null ? 0 : 1; // allowed
 };
 
 // keep isolatedModules happy
