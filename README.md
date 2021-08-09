@@ -73,3 +73,7 @@ You can add `"plugin:@foxglove/typescript"` to the top level `extends` instead o
 tag=$(npm version minor) && echo "$tag"
 git push && git push origin "$tag"
 ```
+
+## Stay in touch
+
+Join our [Slack channel](https://foxglove.dev/join-slack) to ask questions, share feedback, and stay up to date on what our team is working on.
