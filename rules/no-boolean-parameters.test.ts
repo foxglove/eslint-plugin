@@ -5,11 +5,12 @@
 
 void function foo(
   _a: boolean, // eslint-disable-line @foxglove/no-boolean-parameters
-  _b: boolean = false, // eslint-disable-line @foxglove/no-boolean-parameters
-  _c = true, // eslint-disable-line @foxglove/no-boolean-parameters
-  _d?: false, // eslint-disable-line @foxglove/no-boolean-parameters
-  _e?: boolean | number, // ok
-  _f: boolean | undefined = false // eslint-disable-line @foxglove/no-boolean-parameters
+  _b: boolean | undefined, // eslint-disable-line @foxglove/no-boolean-parameters
+  _c: boolean = false, // eslint-disable-line @foxglove/no-boolean-parameters
+  _d = true, // eslint-disable-line @foxglove/no-boolean-parameters
+  _e?: false, // eslint-disable-line @foxglove/no-boolean-parameters
+  _f?: boolean | number, // ok
+  _g: boolean | undefined = false // eslint-disable-line @foxglove/no-boolean-parameters
 ) {};
 
 // eslint-disable-next-line @foxglove/no-boolean-parameters
@@ -31,10 +32,27 @@ function acceptsFoo(
 ) {}
 acceptsFoo((_a) => {}); // ok
 
-void class C {
+abstract class D {
+  // TSAbstractMethodDefinition
   // eslint-disable-next-line @foxglove/no-boolean-parameters
-  foo(_a: boolean | undefined) {}
+  abstract foo(_a: boolean): void;
+}
+
+void class C extends D {
+  // MethodDefinition
+  // eslint-disable-next-line @foxglove/no-boolean-parameters
+  foo(_a: boolean) {}
+
+  // ClassProperty
+  // eslint-disable-next-line @foxglove/no-boolean-parameters
+  bar?: (_b: boolean) => void;
 };
+
+// TSPropertySignature
+({ foo: undefined } as {
+  // eslint-disable-next-line @foxglove/no-boolean-parameters
+  foo?: (_b: boolean) => void;
+});
 
 // keep isolatedModules happy
 export default {};
