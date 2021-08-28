@@ -4,6 +4,30 @@ The following rules are provided by `@foxglove/eslint-plugin`.
 
 **Key:** 🔧 = fixable, 💭 = requires type information (TypeScript only)
 
+### [`@foxglove/no-boolean-parameters`](./no-meaningless-void-operator.js) 💭 🔧
+
+Prohibit boolean parameters to functions, including optional parameters and default values.
+
+In languages without [argument labels](https://docs.swift.org/swift-book/LanguageGuide/Functions.html), boolean parameters often point to an API anti-pattern called the [**boolean trap**](https://ariya.io/2011/08/hall-of-api-shame-boolean-trap). For example, with a function like `repaint(immediate: boolean)`, a reader looking at a call site sees `repaint(true);` and loses key context that `true` means the repaint should be `immediate`.
+
+This rule does currently allow unions of booleans and other types like `value: boolean | number`. This approach was chosen because some common library types like `React.ReactNode` are unions of primitives, and it would be too noisy to prohibit all of these.
+
+Examples of **incorrect** code for this rule:
+
+```ts
+function draw(immediate: boolean) {}
+const draw = (immediate?: boolean) => {};
+const draw = (immediate = false) => {};
+```
+
+Examples of **correct** code for this rule:
+
+```ts
+function draw({ immediate }: { immediate: boolean }) {}
+const draw = ({ immediate }: { immediate?: boolean }) => {};
+const draw = ({ immediate = false }: { immediate: boolean }) => {};
+```
+
 ### [`@foxglove/no-meaningless-void-operator`](./no-meaningless-void-operator.js) 💭 🔧
 
 Disallow the `void` operator when its argument is already of type `void`, `undefined`, or `never`.
