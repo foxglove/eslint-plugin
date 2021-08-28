@@ -4,7 +4,7 @@ The following rules are provided by `@foxglove/eslint-plugin`.
 
 **Key:** 🔧 = fixable, 💭 = requires type information (TypeScript only)
 
-### [`@foxglove/no-boolean-parameters`](./no-meaningless-void-operator.js) 💭 🔧
+### [`@foxglove/no-boolean-parameters`](./no-boolean-parameters.js) 💭 🔧
 
 Prohibit boolean parameters to functions, including optional parameters and default values.
 
