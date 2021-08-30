@@ -30,7 +30,7 @@ const draw = ({ immediate = false }: { immediate: boolean }) => {};
 
 ### [`@foxglove/no-meaningless-void-operator`](./no-meaningless-void-operator.js) 💭 🔧
 
-Disallow the `void` operator when its argument is already of type `void`, `undefined`, or `never`.
+Disallow the `void` operator when its argument is already of type `void` or `undefined`.
 
 The `void` operator is a useful tool to convey the programmer's intent to discard a value. For example, it is recommended as one way of suppressing [`@typescript-eslint/no-floating-promises`](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-floating-promises.md) instead of adding `.catch()` to a promise.
 
@@ -53,11 +53,29 @@ Examples of **correct** code for this rule:
 function foo() {}
 foo(); // nothing to discard
 
-function bar() {
+function bar(x: number) {
+  void x; // discarding a number
   return 2;
 }
 void bar(); // discarding a number
 ```
+
+### Options
+
+This rule accepts a single object option with the following default configuration:
+
+```json
+{
+  "@typescript-eslint/no-meaningless-void-operator": [
+    "error",
+    {
+      "checkNever": false
+    }
+  ]
+}
+```
+
+- `checkNever: true` will suggest removing `void` when the argument has type `never`.
 
 ### [`@foxglove/no-return-promise-resolve`](./no-return-promise-resolve.js) 🔧
 
