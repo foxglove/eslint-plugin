@@ -10,7 +10,7 @@ module.exports = {
     fixable: "code",
     schema: [],
     messages: {
-      ...eqeqeq.meta.messages,
+      unexpected: "Prefer '{{expectedOperator}}' over '{{actualOperator}}'.",
       unexpectedStrict: `Prefer 'x {{expectedOp}} {{literal}}' to catch both null and undefined`,
     },
   },
