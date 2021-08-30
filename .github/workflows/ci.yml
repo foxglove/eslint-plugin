@@ -29,6 +29,7 @@ jobs:
       - run: npm install
       - run: npm run tsc
       - run: npm run lint
+      - run: npm run test
 
       # publish version tags
       - name: npm publish
