@@ -71,20 +71,37 @@ module.exports = {
   meta: {
     type: "suggestion",
     fixable: "code",
-    schema: [],
+    schema: [
+      {
+        type: "object",
+        properties: {
+          allowLoneParameter: {
+            type: "boolean",
+            default: false,
+          },
+        },
+        additionalProperties: false,
+      },
+    ],
     messages: {
       booleanTrap: `Don't use raw boolean value{{paramInfo}} as a parameter{{funcInfo}}; call sites will appear ambiguous (the "boolean trap")`,
       wrapParamInObject: `Replace with {{pattern}}`,
     },
   },
 
-  create(context, _options) {
+  create(context) {
+    const { allowLoneParameter } = context.options?.[0] ?? [
+      { allowLoneParameter: false },
+    ];
     const { esTreeNodeToTSNodeMap, program } =
       ESLintUtils.getParserServices(context);
     const checker = program.getTypeChecker();
     return {
       ":function > AssignmentPattern.params, :function > [typeAnnotation].params, TSFunctionType > [typeAnnotation].params, TSEmptyBodyFunctionExpression > [typeAnnotation].params":
         (param) => {
+          if (allowLoneParameter && param.parent.params.length === 1) {
+            return;
+          }
           const tsNode = esTreeNodeToTSNodeMap.get(param);
           const type = checker.getTypeAtLocation(tsNode);
           const isBoolean = unionTypeParts(type).every(

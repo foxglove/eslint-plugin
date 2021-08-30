@@ -3,7 +3,7 @@ import { ESLintUtils, TSESLint } from "@typescript-eslint/experimental-utils";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const rule = require("./no-boolean-parameters") as TSESLint.RuleModule<
   "booleanTrap" | "wrapParamInObject",
-  []
+  [{ allowLoneParameter: boolean }]
 >;
 
 const ruleTester = new ESLintUtils.RuleTester({
@@ -21,6 +21,10 @@ ruleTester.run("no-boolean-parameters", rule, {
       function acceptsFoo(_: (a: boolean) => void) {}  // eslint-disable-line no-boolean-parameters
       acceptsFoo((a) => {}); // ok    
     `,
+    {
+      code: "function foo(a: boolean) {}",
+      options: [{ allowLoneParameter: true }],
+    },
   ],
   invalid: [
     {

@@ -28,6 +28,21 @@ const draw = ({ immediate }: { immediate?: boolean }) => {};
 const draw = ({ immediate = false }: { immediate: boolean }) => {};
 ```
 
+### Options
+
+This rule accepts a single object option with the following default configuration:
+
+```json
+{
+  "@typescript-eslint/no-boolean-parameters": [
+    "error",
+    { "allowLoneParameter": false }
+  ]
+}
+```
+
+- `allowLoneParameter: true` will not report an error if a boolean parameter is the **only** parameter to a function.
+
 ### [`@foxglove/no-meaningless-void-operator`](./no-meaningless-void-operator.js) 💭 🔧
 
 Disallow the `void` operator when its argument is already of type `void` or `undefined`.
