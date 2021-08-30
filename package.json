@@ -15,9 +15,9 @@
     "test": "jest",
     "tsc": "tsc",
     "lint": "npm run lint:base && npm run lint:jest && npm run lint:react",
-    "lint:base": "eslint --report-unused-disable-directives --config ./configs/base.js .",
-    "lint:jest": "eslint --report-unused-disable-directives --config ./configs/jest.js",
-    "lint:react": "eslint --report-unused-disable-directives --config ./configs/react.js"
+    "lint:base": "eslint --report-unused-disable-directives .",
+    "lint:jest": "eslint --report-unused-disable-directives --config ./configs/jest.js .",
+    "lint:react": "eslint --report-unused-disable-directives --config ./configs/react.js ."
   },
   "peerDependencies": {
     "eslint": "^7",
