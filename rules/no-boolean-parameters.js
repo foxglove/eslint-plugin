@@ -2,7 +2,7 @@ const { ESLintUtils } = require("@typescript-eslint/experimental-utils");
 const { unionTypeParts } = require("tsutils");
 const ts = require("typescript");
 
-function getMessage(param) {
+function getData(param) {
   let paramName;
   if (param.type === "AssignmentPattern" && param.left.type === "Identifier") {
     paramName = param.left.name;
@@ -13,6 +13,8 @@ function getMessage(param) {
   let funcName;
   if (param.parent.id) {
     funcName = param.parent.id.name;
+  } else if (param.parent.parent?.type === "VariableDeclarator") {
+    funcName = param.parent.parent.id.name;
   } else if (
     ["Property", "MethodDefinition", "TSAbstractMethodDefinition"].includes(
       param.parent.parent?.type
@@ -31,11 +33,7 @@ function getMessage(param) {
     }
   }
 
-  return `Don't use raw boolean value${
-    paramName ? ` '${paramName}'` : ""
-  } as a parameter${
-    funcName ? ` to '${funcName}'` : ""
-  }; call sites will appear ambiguous (the "boolean trap")`;
+  return { paramName, funcName };
 }
 
 function getSuggestions(param, context) {
@@ -58,7 +56,8 @@ function getSuggestions(param, context) {
 
   if (pattern && typeAnnotation) {
     suggestions.push({
-      desc: `Replace with ${pattern}`,
+      messageId: "wrapParamInObject",
+      data: { pattern },
       fix(fixer) {
         return fixer.replaceText(param, `${pattern}: ${typeAnnotation}`);
       },
@@ -73,6 +72,10 @@ module.exports = {
     type: "suggestion",
     fixable: "code",
     schema: [],
+    messages: {
+      booleanTrap: `Don't use raw boolean value{{paramInfo}} as a parameter{{funcInfo}}; call sites will appear ambiguous (the "boolean trap")`,
+      wrapParamInObject: `Replace with {{pattern}}`,
+    },
   },
 
   create(context, _options) {
@@ -93,10 +96,15 @@ module.exports = {
                 ts.TypeFlags.Null |
                 ts.TypeFlags.Never)
           );
+          const { paramName, funcName } = getData(param);
           if (isBoolean) {
             context.report({
               node: param,
-              message: getMessage(param),
+              messageId: "booleanTrap",
+              data: {
+                paramInfo: paramName ? ` '${paramName}'` : "",
+                funcInfo: funcName ? ` to '${funcName}'` : "",
+              },
               suggest: getSuggestions(param, context),
             });
           }
