@@ -1,41 +1,92 @@
-// Use --report-unused-disable-directives to validate errors
+import { ESLintUtils, TSESLint } from "@typescript-eslint/experimental-utils";
 
-void (async () => {
-  // noop
-})();
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const rule = require("./no-meaningless-void-operator") as TSESLint.RuleModule<
+  "meaninglessVoidOperator" | "removeVoid",
+  [{ checkNever: boolean }]
+>;
 
-// eslint-disable-next-line @foxglove/no-meaningless-void-operator
-void (() => {
-  // noop
-})();
+const ruleTester = new ESLintUtils.RuleTester({
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: 2020,
+    project: "./tsconfig.test.json",
+  },
+});
 
-function foo(): void {
-  // noop
-}
-function bar(): undefined {
-  return undefined;
-}
-function baz(): number {
+ruleTester.run("no-meaningless-void-operator", rule, {
+  valid: [
+    `
+(() => {})();
+
+function foo() {}
+foo(); // nothing to discard
+
+function bar(x: number) {
+  void x;
   return 2;
 }
-function maybeBaz(): number | undefined {
-  return 2;
+void bar(); // discarding a number
+    `,
+    `
+function bar(x: never) {
+  void x;
 }
-function maybeNothing(): void | undefined {
-  return;
+    `,
+  ],
+  invalid: [
+    {
+      code: "void (() => {})();",
+      output: "(() => {})();",
+      errors: [
+        {
+          messageId: "meaninglessVoidOperator",
+          line: 1,
+          column: 1,
+        },
+      ],
+    },
+    {
+      code: `
+function foo() {}
+void foo();
+      `,
+      output: `
+function foo() {}
+foo();
+      `,
+      errors: [
+        {
+          messageId: "meaninglessVoidOperator",
+          line: 3,
+          column: 1,
+        },
+      ],
+    },
+    {
+      options: [{ checkNever: true }],
+      code: `
+function bar(x: never) {
+  void x;
 }
-function exit(): never {
-  throw new Error();
+      `.trimRight(),
+      errors: [
+        {
+          messageId: "meaninglessVoidOperator",
+          line: 3,
+          column: 3,
+          suggestions: [
+            {
+              messageId: "removeVoid",
+              output: `
+function bar(x: never) {
+  x;
 }
-
-void foo(); // eslint-disable-line @foxglove/no-meaningless-void-operator
-void bar(); // eslint-disable-line @foxglove/no-meaningless-void-operator
-void baz();
-void void baz(); // eslint-disable-line @foxglove/no-meaningless-void-operator
-void maybeBaz();
-void void maybeBaz(); // eslint-disable-line @foxglove/no-meaningless-void-operator
-void maybeNothing(); // eslint-disable-line @foxglove/no-meaningless-void-operator
-void exit(); // eslint-disable-line @foxglove/no-meaningless-void-operator
-
-// keep isolatedModules happy
-export default {};
+              `.trimRight(),
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});

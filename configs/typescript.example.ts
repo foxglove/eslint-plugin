@@ -1,5 +1,6 @@
 // Use --report-unused-disable-directives to validate errors
 
+/* eslint-disable no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 
 void (async () => {

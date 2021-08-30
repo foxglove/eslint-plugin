@@ -10,7 +10,8 @@ module.exports = {
     fixable: "code",
     schema: [],
     messages: {
-      unexpected: "Prefer '{{expectedOperator}}' over '{{actualOperator}}'.",
+      ...eqeqeq.meta.messages,
+      unexpectedStrict: `Prefer 'x {{expectedOp}} {{literal}}' to catch both null and undefined`,
     },
   },
 
@@ -30,7 +31,8 @@ module.exports = {
           context.report({
             node,
             loc,
-            message: `Prefer 'x ${expectedOp} ${literal}' to catch both null and undefined`,
+            messageId: "unexpectedStrict",
+            data: { expectedOp, literal },
           });
         }
 

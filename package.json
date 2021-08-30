@@ -12,12 +12,12 @@
     "**/*.js"
   ],
   "scripts": {
+    "test": "jest",
     "tsc": "tsc",
-    "lint": "npm run lint:base && npm run lint:jest && npm run lint:react && npm run lint:typescript",
+    "lint": "npm run lint:base && npm run lint:jest && npm run lint:react",
     "lint:base": "eslint --report-unused-disable-directives --config ./configs/base.js .",
     "lint:jest": "eslint --report-unused-disable-directives --config ./configs/jest.js",
-    "lint:react": "eslint --report-unused-disable-directives --config ./configs/react.js",
-    "lint:typescript": "eslint --report-unused-disable-directives --config ./configs/typescript.js **/*.ts"
+    "lint:react": "eslint --report-unused-disable-directives --config ./configs/react.js"
   },
   "peerDependencies": {
     "eslint": "^7",
@@ -31,11 +31,14 @@
   "devDependencies": {
     "@foxglove/eslint-plugin": "file:.",
     "@foxglove/tsconfig": "1.0.0",
+    "@types/jest": "^27",
     "@typescript-eslint/eslint-plugin": "^4",
     "@typescript-eslint/parser": "^4",
     "eslint-plugin-jest": "^24",
     "eslint-plugin-react": "^7",
     "eslint-plugin-react-hooks": "^4",
+    "jest": "^27",
+    "ts-jest": "^27",
     "typescript": "^4"
   }
 }
