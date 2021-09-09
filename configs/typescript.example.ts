@@ -28,5 +28,7 @@ void (async () => {
   wut == null ? 0 : 1; // allowed
 };
 
+void undefined; // eslint-disable-line @typescript-eslint/no-meaningless-void-operator
+
 // keep isolatedModules happy
 export default {};
