@@ -104,15 +104,18 @@ module.exports = {
           }
           const tsNode = esTreeNodeToTSNodeMap.get(param);
           const type = checker.getTypeAtLocation(tsNode);
-          const isBoolean = unionTypeParts(type).every(
-            (part) =>
-              part.flags &
-              (ts.TypeFlags.BooleanLike |
-                ts.TypeFlags.Void |
-                ts.TypeFlags.Undefined |
-                ts.TypeFlags.Null |
-                ts.TypeFlags.Never)
-          );
+          const parts = unionTypeParts(type);
+          const isBoolean =
+            parts.some((part) => part.flags & ts.TypeFlags.BooleanLike) &&
+            parts.every(
+              (part) =>
+                part.flags &
+                (ts.TypeFlags.BooleanLike |
+                  ts.TypeFlags.Void |
+                  ts.TypeFlags.Undefined |
+                  ts.TypeFlags.Null |
+                  ts.TypeFlags.Never)
+            );
           const { paramName, funcName } = getData(param);
           if (isBoolean) {
             context.report({
