@@ -17,6 +17,8 @@ const ruleTester = new ESLintUtils.RuleTester({
 ruleTester.run("no-boolean-parameters", rule, {
   valid: [
     "function foo(a: string) {}",
+    "function foo(a: never) {}",
+    "function foo(a: void | undefined) {}",
     `
       function acceptsFoo(_: (a: boolean) => void) {}  // eslint-disable-line no-boolean-parameters
       acceptsFoo((a) => {}); // ok    
@@ -54,6 +56,22 @@ ruleTester.run("no-boolean-parameters", rule, {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
               output: "function foo({ a }: { a: boolean | undefined }) {}",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      code: "function foo(a: boolean | never) {}",
+      errors: [
+        {
+          messageId: "booleanTrap",
+          data: { paramInfo: ` 'a'`, funcInfo: ` to 'foo'` },
+          suggestions: [
+            {
+              messageId: "wrapParamInObject",
+              data: { pattern: "{ a }" },
+              output: "function foo({ a }: { a: boolean | never }) {}",
             },
           ],
         },
