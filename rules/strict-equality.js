@@ -1,5 +1,13 @@
-const eqeqeq = require("eslint/lib/rules/eqeqeq");
-const { isNullLiteral } = require("eslint/lib/rules/utils/ast-utils");
+// https://github.com/eslint/eslint/blob/dd58cd4afa6ced9016c091fc99a702c97a3e44f0/lib/rules/utils/ast-utils.js#L155
+function isNullLiteral(node) {
+  return (
+    node.type === "Literal" &&
+    // eslint-disable-next-line @foxglove/strict-equality
+    node.value === null &&
+    !node.regex &&
+    !node.bigint
+  );
+}
 
 // - Prefer double equals when comparing with undefined
 // - Prefer undefined over null
@@ -16,7 +24,6 @@ module.exports = {
   },
 
   create(context) {
-    const tripleEq = eqeqeq.create(context);
     const sourceCode = context.getSourceCode();
 
     function isUndefinedLiteral(node) {
@@ -62,10 +69,24 @@ module.exports = {
           }
         }
 
-        // Otherwise, fall through to `eqeqeq` rule
-        // We don't need to configure it since null and undefined were already checked
-        else {
-          tripleEq.BinaryExpression(node);
+        // Otherwise, prefer triple equals
+        else if (node.operator === "==" || node.operator === "!=") {
+          // Adapted from https://github.com/eslint/eslint/blob/fa4d4830a0e77f92154079ada17ffb893ce64232/lib/rules/eqeqeq.js
+          const operatorToken = sourceCode.getFirstTokenBetween(
+            node.left,
+            node.right,
+            (token) => token.value === node.operator
+          );
+
+          context.report({
+            node,
+            loc: operatorToken.loc,
+            messageId: "unexpected",
+            data: {
+              expectedOperator: node.operator + "=",
+              actualOperator: node.operator,
+            },
+          });
         }
       },
     };
