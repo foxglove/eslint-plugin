@@ -43,15 +43,15 @@ module.exports = {
           });
         }
 
+        const operatorToken = sourceCode.getFirstTokenBetween(
+          node.left,
+          node.right,
+          (token) => token.value === node.operator
+        );
+
         // If either side is undefined, prefer double equals
         if (isUndefinedLiteral(node.left) || isUndefinedLiteral(node.right)) {
           if (node.operator === "===" || node.operator === "!==") {
-            const operatorToken = sourceCode.getFirstTokenBetween(
-              node.left,
-              node.right,
-              (token) => token.value === node.operator
-            );
-
             preferDoubleEqual(node, operatorToken.loc, "undefined");
           }
         }
@@ -59,25 +59,12 @@ module.exports = {
         // If either side is null, prefer double equals
         else if (isNullLiteral(node.left) || isNullLiteral(node.right)) {
           if (node.operator === "===" || node.operator === "!==") {
-            const operatorToken = sourceCode.getFirstTokenBetween(
-              node.left,
-              node.right,
-              (token) => token.value === node.operator
-            );
-
             preferDoubleEqual(node, operatorToken.loc, "null");
           }
         }
 
         // Otherwise, prefer triple equals
         else if (node.operator === "==" || node.operator === "!=") {
-          // Adapted from https://github.com/eslint/eslint/blob/fa4d4830a0e77f92154079ada17ffb893ce64232/lib/rules/eqeqeq.js
-          const operatorToken = sourceCode.getFirstTokenBetween(
-            node.left,
-            node.right,
-            (token) => token.value === node.operator
-          );
-
           context.report({
             node,
             loc: operatorToken.loc,
