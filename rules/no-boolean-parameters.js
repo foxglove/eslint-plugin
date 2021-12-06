@@ -23,7 +23,7 @@ function getData(param) {
     funcName = param.parent.parent.key.name;
   } else if (param.parent.parent?.type === "TSTypeAnnotation") {
     if (
-      ["TSPropertySignature", "ClassProperty"].includes(
+      ["TSPropertySignature", "ClassProperty", "PropertyDefinition"].includes(
         param.parent.parent.parent?.type
       )
     ) {
@@ -70,6 +70,7 @@ function getSuggestions(param, context) {
 module.exports = {
   meta: {
     type: "suggestion",
+    hasSuggestions: true,
     fixable: "code",
     schema: [
       {

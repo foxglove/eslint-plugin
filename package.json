@@ -20,7 +20,7 @@
     "lint:react": "eslint --report-unused-disable-directives --config ./configs/react.js ."
   },
   "peerDependencies": {
-    "eslint": "^7",
+    "eslint": "^7 || ^8",
     "eslint-config-prettier": "^8",
     "eslint-plugin-es": "^4",
     "eslint-plugin-filenames": "^1",
@@ -32,9 +32,10 @@
     "@foxglove/eslint-plugin": "file:.",
     "@foxglove/tsconfig": "1.1.0",
     "@types/jest": "^27",
-    "@typescript-eslint/eslint-plugin": "^4.31.0",
-    "@typescript-eslint/parser": "^4.31.0",
-    "eslint-plugin-jest": "^24",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8",
+    "eslint-plugin-jest": "^25",
     "eslint-plugin-react": "^7",
     "eslint-plugin-react-hooks": "^4",
     "jest": "^27",
