@@ -1,4 +1,4 @@
-import { ESLintUtils, TSESLint } from "@typescript-eslint/experimental-utils";
+import { ESLintUtils, TSESLint } from "@typescript-eslint/utils";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const rule = require("./no-return-promise-resolve") as TSESLint.RuleModule<

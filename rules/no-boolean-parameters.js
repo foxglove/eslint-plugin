@@ -1,4 +1,4 @@
-const { ESLintUtils } = require("@typescript-eslint/experimental-utils");
+const { ESLintUtils } = require("@typescript-eslint/utils");
 const { unionTypeParts } = require("tsutils");
 const ts = require("typescript");
 
