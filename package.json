@@ -19,6 +19,11 @@
     "lint:jest": "eslint --report-unused-disable-directives --config ./configs/jest.js .",
     "lint:react": "eslint --report-unused-disable-directives --config ./configs/react.js ."
   },
+  "dependencies": {
+    "@typescript-eslint/utils": "^5",
+    "tsutils": "^3",
+    "typescript": "^4"
+  },
   "peerDependencies": {
     "eslint": "^7 || ^8",
     "eslint-config-prettier": "^8",
@@ -39,7 +44,6 @@
     "eslint-plugin-react": "^7",
     "eslint-plugin-react-hooks": "^4",
     "jest": "^27",
-    "ts-jest": "^27",
-    "typescript": "^4"
+    "ts-jest": "^27"
   }
 }
