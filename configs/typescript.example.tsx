@@ -30,5 +30,9 @@ void (async () => {
 
 void undefined; // eslint-disable-line @typescript-eslint/no-meaningless-void-operator
 
+/* eslint-enable @typescript-eslint/no-unused-expressions */
+42; // eslint-disable-line @typescript-eslint/no-unused-expressions
+<></>; // eslint-disable-line @typescript-eslint/no-unused-expressions
+
 // keep isolatedModules happy
 export default {};

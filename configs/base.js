@@ -72,7 +72,7 @@ module.exports = {
       },
     ],
 
-    "no-unused-expressions": "error",
+    "no-unused-expressions": ["error", { enforceForJSX: true }],
     "no-param-reassign": "error",
     "no-useless-rename": "error",
     "object-shorthand": "error",

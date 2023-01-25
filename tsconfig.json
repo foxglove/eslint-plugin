@@ -3,6 +3,7 @@
   "extends": "@foxglove/tsconfig/base",
   "compilerOptions": {
     "lib": ["es2020", "dom"],
+    "jsx": "preserve",
     "noEmit": true
   }
 }
