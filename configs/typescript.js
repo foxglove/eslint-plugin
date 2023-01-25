@@ -31,7 +31,10 @@ module.exports = {
     "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
 
     "no-unused-expressions": "off",
-    "@typescript-eslint/no-unused-expressions": "error",
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      { enforceForJSX: true },
+    ],
 
     // The ! assertion may be used sparingly in cases where tsc cannot automatically do bounds
     // checking such as indexed array iteration

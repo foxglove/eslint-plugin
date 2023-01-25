@@ -3,6 +3,9 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "eslint.options": {
+    "reportUnusedDisableDirectives": "error"
+  },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.prettierPath": "./node_modules/prettier",
