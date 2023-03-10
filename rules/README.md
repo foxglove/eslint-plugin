@@ -1,6 +1,6 @@
 ## Rules
 
-The following rules are provided by `@foxglove/eslint-plugin`.
+The following rules are provided by `@foxglove/eslint-plugin` you may need to enable adding `@foxglove` in the `plugins` section of your eslint configuration.
 
 **Key:** 🔧 = fixable, 💭 = requires type information (TypeScript only)
 
@@ -34,7 +34,7 @@ This rule accepts a single object option with the following default configuratio
 
 ```json
 {
-  "@typescript-eslint/no-boolean-parameters": [
+  "@foxglove/no-boolean-parameters": [
     "error",
     { "allowLoneParameter": false }
   ]
