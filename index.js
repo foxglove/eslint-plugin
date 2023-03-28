@@ -9,7 +9,6 @@ module.exports = {
   },
   configs: {
     base: require("./configs/base"),
-    "frontend-mui-recommended": require("./configs/frontend-mui-recommended"),
     jest: require("./configs/jest"),
     react: require("./configs/react"),
     typescript: require("./configs/typescript"),
