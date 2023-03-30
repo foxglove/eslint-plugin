@@ -5,6 +5,7 @@ module.exports = {
     "strict-equality": require("./rules/strict-equality"),
     "no-return-promise-resolve": require("./rules/no-return-promise-resolve"),
     "no-boolean-parameters": require("./rules/no-boolean-parameters"),
+    "no-restricted-imports": require("./rules/no-restricted-imports"),
   },
   configs: {
     base: require("./configs/base"),
