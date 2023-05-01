@@ -90,7 +90,6 @@ module.exports = {
         if (!info) {
           return;
         }
-        console.log("exit!", info);
 
         for (const privateIdentifier of info.privates) {
           const refs = info.memberReferences.get(privateIdentifier.name) ?? [];
