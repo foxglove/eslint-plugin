@@ -66,7 +66,7 @@ module.exports = {
       },
 
       // Track any private properties or methods on the class, e.g. `private foo`.
-      [`:matches(PropertyDefinition, MethodDefinition)[accessibility="private"] > Identifier.key`]:
+      [`:matches(PropertyDefinition, MethodDefinition[kind!="constructor"])[accessibility="private"] > Identifier.key`]:
         (
           /** @type {import("estree").PropertyDefinition | import("estree").MethodDefinition} */
           node
