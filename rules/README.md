@@ -2,7 +2,7 @@
 
 The following rules are provided by `@foxglove/eslint-plugin`. You may need to enable the plugin by adding `@foxglove` in the `plugins` section of your eslint configuration.
 
-**Key:** 🔧 = fixable, 💭 = requires type information (TypeScript only)
+**Key:** 🔧 = fixable, 💡 = has suggestions, 💭 = requires type information (TypeScript only)
 
 ### [`@foxglove/no-boolean-parameters`](./no-boolean-parameters.js) 💭 🔧
 
@@ -34,10 +34,7 @@ This rule accepts a single object option with the following default configuratio
 
 ```json
 {
-  "@foxglove/no-boolean-parameters": [
-    "error",
-    { "allowLoneParameter": false }
-  ]
+  "@foxglove/no-boolean-parameters": ["error", { "allowLoneParameter": false }]
 }
 ```
 
@@ -73,4 +70,37 @@ async () => 3;
 async () => {
   throw new Error("boom");
 };
+```
+
+### [`@foxglove/prefer-hash-private`](./prefer-hash-private.js) 💡
+
+Prefer using [private class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields) instead of the TypeScript `private` keyword. In contrast with `private x`, which is a compile-time-only feature of TypeScript, `#x` is _truly_ private (cannot be accessed at runtime from outside the class using subscript notation) and cannot accidentally interfere with superclass properties.
+
+One downside worth noting is that private fields can interfere with `Proxy` behavior:
+
+- https://lea.verou.me/2023/04/private-fields-considered-harmful/
+- https://github.com/tc39/proposal-class-fields/issues/106
+
+Examples of **incorrect** code for this rule:
+
+```ts
+class Foo {
+  private x = 3;
+
+  private go() {
+    this.x = 4;
+  }
+}
+```
+
+Examples of **correct** code for this rule:
+
+```ts
+class Foo {
+  #x = 3;
+
+  #go() {
+    this.#x = 4;
+  }
+}
 ```

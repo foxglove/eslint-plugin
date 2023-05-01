@@ -1,6 +1,6 @@
 module.exports = {
   extends: ["plugin:@foxglove/base"],
-  env: { node: true },
+  env: { node: true, es2022: true },
   parserOptions: {
     project: "tsconfig.json",
   },
