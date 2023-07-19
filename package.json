@@ -37,15 +37,15 @@
   "devDependencies": {
     "@foxglove/eslint-plugin": "file:.",
     "@foxglove/tsconfig": "2.0.0",
-    "@types/jest": "29.5.1",
-    "@typescript-eslint/eslint-plugin": "5.59.2",
-    "@typescript-eslint/parser": "5.59.2",
-    "eslint": "8.39.0",
-    "eslint-plugin-jest": "27.2.1",
+    "@types/jest": "29.5.3",
+    "@typescript-eslint/eslint-plugin": "6.1.0",
+    "@typescript-eslint/parser": "6.1.0",
+    "eslint": "8.45.0",
+    "eslint-plugin-jest": "27.2.3",
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
-    "jest": "29.5.0",
-    "ts-jest": "29.1.0"
+    "jest": "29.6.1",
+    "ts-jest": "29.1.1"
   },
   "prettier": {
     "trailingComma": "es5"
