@@ -1,6 +1,6 @@
 {
   "name": "@foxglove/eslint-plugin",
-  "version": "0.23.0",
+  "version": "1.0.0",
   "description": "Foxglove ESLint rules and configuration",
   "license": "MIT",
   "repository": {
@@ -21,7 +21,7 @@
     "prettier": "prettier"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "^5",
+    "@typescript-eslint/utils": "^6",
     "tsutils": "^3",
     "typescript": "^4 || ^5"
   },
@@ -40,6 +40,7 @@
     "@types/jest": "29.5.3",
     "@typescript-eslint/eslint-plugin": "6.1.0",
     "@typescript-eslint/parser": "6.1.0",
+    "@typescript-eslint/rule-tester": "6.1.0",
     "eslint": "8.45.0",
     "eslint-plugin-jest": "27.2.3",
     "eslint-plugin-react": "7.32.2",

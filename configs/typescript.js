@@ -1,13 +1,11 @@
 module.exports = {
   extends: [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
     "plugin:import/typescript",
   ],
   parser: "@typescript-eslint/parser",
   rules: {
-    // Avoid #member syntax for performance
-    "@foxglove/no-private-identifier": "error",
     "@typescript-eslint/no-meaningless-void-operator": [
       "error",
       { checkNever: true },
@@ -52,20 +50,10 @@ module.exports = {
     ],
 
     "@typescript-eslint/prefer-includes": "error",
-    "@typescript-eslint/prefer-nullish-coalescing": "error",
-    "@typescript-eslint/prefer-optional-chain": "error",
     "@typescript-eslint/promise-function-async": "error",
 
     // Async functions without await are used to satisfy interface requirements
     "@typescript-eslint/require-await": "off",
-
-    // both sides of `+` must be either string or number
-    "@typescript-eslint/restrict-plus-operands": [
-      "error",
-      {
-        checkCompoundAssignments: true,
-      },
-    ],
 
     "@typescript-eslint/return-await": ["error", "always"],
 

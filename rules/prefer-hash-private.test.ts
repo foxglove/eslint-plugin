@@ -1,12 +1,12 @@
-import { ESLintUtils, TSESLint } from "@typescript-eslint/utils";
+import { RuleTester } from "@typescript-eslint/rule-tester";
+import { TSESLint } from "@typescript-eslint/utils";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const rule = require("./prefer-hash-private") as TSESLint.RuleModule<
-  "preferHash" | "rename",
-  []
+  "preferHash" | "rename"
 >;
 
-const ruleTester = new ESLintUtils.RuleTester({
+const ruleTester = new RuleTester({
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2020,
