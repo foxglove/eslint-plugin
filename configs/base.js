@@ -37,6 +37,7 @@ module.exports = {
     // require double equal for null and undefined, triple equal everywhere else
     "@foxglove/strict-equality": "error",
     "@foxglove/no-return-promise-resolve": "error",
+    "@foxglove/prefer-hash-private": "error",
 
     // require curly braces everywhere
     curly: "error",
