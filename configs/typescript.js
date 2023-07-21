@@ -74,5 +74,15 @@ module.exports = {
         allowAny: false,
       },
     ],
+
+    // We find the following rules from the strict/stylistic configs to be overly pedantic and not
+    // so useful
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/consistent-indexed-object-style": "off",
+    "@typescript-eslint/no-dynamic-delete": "off",
+    "@typescript-eslint/dot-notation": "off",
+    "@typescript-eslint/array-type": "off",
+    "@typescript-eslint/no-invalid-void-type": "off",
+    "@typescript-eslint/unified-signatures": "off",
   },
 };
