@@ -60,12 +60,7 @@ module.exports = {
     "@typescript-eslint/require-await": "off",
 
     // both sides of `+` must be either string or number
-    "@typescript-eslint/restrict-plus-operands": [
-      "error",
-      {
-        checkCompoundAssignments: true,
-      },
-    ],
+    "@typescript-eslint/restrict-plus-operands": "error",
 
     "@typescript-eslint/return-await": ["error", "always"],
 
