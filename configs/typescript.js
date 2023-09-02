@@ -75,6 +75,11 @@ module.exports = {
       },
     ],
 
+    "@typescript-eslint/prefer-nullish-coalescing": [
+      "error",
+      { ignoreConditionalTests: true },
+    ],
+
     // We find the following rules from the strict/stylistic configs to be overly pedantic and not
     // so useful
     "@typescript-eslint/consistent-type-definitions": "off",
