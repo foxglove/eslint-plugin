@@ -4,7 +4,7 @@
 
 void (async () => {
   await 1; // eslint-disable-line @typescript-eslint/await-thenable
-  await (function () {})(); // eslint-disable-line @typescript-eslint/await-thenable, @typescript-eslint/no-empty-function
+  await (function () {})(); // eslint-disable-line @typescript-eslint/await-thenable, @typescript-eslint/no-empty-function, @typescript-eslint/no-confusing-void-expression
   await (async function () {})(); // eslint-disable-line @typescript-eslint/no-empty-function
 })();
 
@@ -33,6 +33,14 @@ void undefined; // eslint-disable-line @typescript-eslint/no-meaningless-void-op
 /* eslint-enable @typescript-eslint/no-unused-expressions */
 42; // eslint-disable-line @typescript-eslint/no-unused-expressions
 <></>; // eslint-disable-line @typescript-eslint/no-unused-expressions
+
+class C {
+  private x = 1; // eslint-disable-line @foxglove/prefer-hash-private
+  constructor() {
+    void this.x;
+  }
+}
+void C;
 
 // keep isolatedModules happy
 export default {};
