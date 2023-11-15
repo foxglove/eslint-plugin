@@ -1,6 +1,6 @@
 {
   "name": "@foxglove/eslint-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Foxglove ESLint rules and configuration",
   "license": "MIT",
   "repository": {
@@ -27,7 +27,7 @@
   },
   "peerDependencies": {
     "eslint": "^7 || ^8",
-    "eslint-config-prettier": "^8",
+    "eslint-config-prettier": "^8 || ^9",
     "eslint-plugin-es": "^4",
     "eslint-plugin-filenames": "^1",
     "eslint-plugin-import": "^2",
