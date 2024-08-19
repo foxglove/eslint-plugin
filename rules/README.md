@@ -1,6 +1,6 @@
 ## Rules
 
-The following rules are provided by `@foxglove/eslint-plugin`. You may need to enable the plugin by adding `@foxglove` in the `plugins` section of your eslint configuration.
+The following rules are provided by `@lichtblick/eslint-plugin`.
 
 **Key:** 🔧 = fixable, 💡 = has suggestions, 💭 = requires type information (TypeScript only)
 

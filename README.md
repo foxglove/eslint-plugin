@@ -1,8 +1,8 @@
-# @foxglove/eslint-plugin
+# @lichtblick/eslint-plugin
 
-[![npm package](https://img.shields.io/npm/v/@foxglove/eslint-plugin)](https://www.npmjs.com/package/@foxglove/eslint-plugin)
+[![npm package](https://img.shields.io/npm/v/@lichtblick/eslint-plugin)](https://www.npmjs.com/package/@lichtblick/eslint-plugin)
 
-Foxglove default eslint configuration & rules.
+Default eslint configuration & rules.
 
 Please err on the side of conservative changes to this repo - multiple Foxglove projects should adopt a change before making it a default.
 
@@ -23,7 +23,7 @@ The following configurations are available:
 
 ```sh
 yarn add -D \
-    @foxglove/eslint-plugin \
+    @lichtblick/eslint-plugin \
     @typescript-eslint/eslint-plugin \
     @typescript-eslint/parser \
     eslint \
@@ -63,7 +63,7 @@ You can add `"plugin:@foxglove/typescript"` to the top level `extends` instead o
 
 ## License
 
-@foxglove/eslint-plugin is released under the [MIT License](/LICENSE.md).
+@lichtblick/eslint-plugin is released under the [MIT License](/LICENSE.md).
 
 ## Releasing
 
