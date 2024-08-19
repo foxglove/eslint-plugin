@@ -10,7 +10,7 @@ module.exports = {
       "error",
       { checkNever: true },
     ],
-    "@foxglove/no-boolean-parameters": "error",
+    "@lichtblick/no-boolean-parameters": "error",
 
     // `<T>x` style assertions are not compatible with JSX code,
     // so for consistency we prefer `x as T` everywhere.

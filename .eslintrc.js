@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["plugin:@foxglove/base"],
+  extends: ["plugin:@lichtblick/base"],
   env: { node: true, es2022: true },
   parserOptions: {
     project: "tsconfig.json",
@@ -8,7 +8,7 @@ module.exports = {
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
-      extends: ["plugin:@foxglove/typescript"],
+      extends: ["plugin:@lichtblick/typescript"],
       parserOptions: { project: "tsconfig.json" },
     },
   ],
