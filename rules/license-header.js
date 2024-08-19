@@ -31,17 +31,13 @@ module.exports = {
     return {
       Program: () => {
         const source = context.getSourceCode().getText();
-
-        // Check if either header is present
         const isNewFileHeaderPresent = source.indexOf(NEW_FILE_LICENSE_HEADER) !== -1;
         const isModifiedFileHeaderPresent = source.indexOf(MODIFIED_FILE_LICENSE_HEADER) !== -1;
-
         const prefixLines = source.substring(0, Math.max(0, source.indexOf('\n'))).trim().split("\n");
         const prefixLinesAreValid = prefixLines.every(
           (line) => line === "" || ALLOWED_PREFIX_LINES.includes(line)
         );
 
-        // If neither header is present, treat it as a new file and add the full header
         if (!isNewFileHeaderPresent && !isModifiedFileHeaderPresent) {
           context.report({
             message: "Missing license header for a new file",
@@ -49,7 +45,6 @@ module.exports = {
             fix: (fixer) => fixer.insertTextBeforeRange([0, 0], NEW_FILE_LICENSE_HEADER + "\n\n"),
           });
         } 
-        // If a header is missing or invalid, treat it as a modified file and add the modified header
         else if (!prefixLinesAreValid || (isModifiedFileHeaderPresent && headerIndex === -1)) {
           context.report({
             message: "Missing or incorrect license header for a modified file",
