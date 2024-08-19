@@ -4,7 +4,7 @@ The following rules are provided by `@lichtblick/eslint-plugin`. You may need to
 
 **Key:** 🔧 = fixable, 💡 = has suggestions, 💭 = requires type information (TypeScript only)
 
-### [`@foxglove/no-boolean-parameters`](./no-boolean-parameters.js) 💭 🔧
+### [`@lichtblick/no-boolean-parameters`](./no-boolean-parameters.js) 💭 🔧
 
 Prohibit boolean parameters to functions, including optional parameters and default values.
 
@@ -34,13 +34,13 @@ This rule accepts a single object option with the following default configuratio
 
 ```json
 {
-  "@foxglove/no-boolean-parameters": ["error", { "allowLoneParameter": false }]
+  "@lichtblick/no-boolean-parameters": ["error", { "allowLoneParameter": false }]
 }
 ```
 
 - `allowLoneParameter: true` will not report an error if a boolean parameter is the **only** parameter to a function.
 
-### [`@foxglove/no-return-promise-resolve`](./no-return-promise-resolve.js) 🔧
+### [`@lichtblick/no-return-promise-resolve`](./no-return-promise-resolve.js) 🔧
 
 Disallow returning `Promise.resolve(...)` or `Promise.reject(...)` inside an async function. This is redundant since an async function will always return a Promise — use `return` or `throw` directly instead.
 
@@ -72,7 +72,7 @@ async () => {
 };
 ```
 
-### [`@foxglove/prefer-hash-private`](./prefer-hash-private.js) 💡
+### [`@lichtblick/prefer-hash-private`](./prefer-hash-private.js) 💡
 
 Prefer using [private class fields](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields) instead of the TypeScript `private` keyword. In contrast with `private x`, which is a compile-time-only feature of TypeScript, `#x` is _truly_ private (cannot be accessed at runtime from outside the class using subscript notation) and cannot accidentally interfere with superclass properties.
 

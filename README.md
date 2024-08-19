@@ -4,7 +4,7 @@
 
 Lichtblick default eslint configuration & rules.
 
-Please err on the side of conservative changes to this repo - multiple Foxglove projects should adopt a change before making it a default.
+Please err on the side of conservative changes to this repo - multiple Lichtblick projects should adopt a change before making it a default.
 
 ## Rules
 
@@ -14,10 +14,10 @@ See [rules/README.md](rules/README.md) for details on each rule.
 
 The following configurations are available:
 
-- `plugin:@foxglove/base`
-- `plugin:@foxglove/jest`
-- `plugin:@foxglove/react`
-- `plugin:@foxglove/typescript`
+- `plugin:@lichtblick/base`
+- `plugin:@lichtblick/jest`
+- `plugin:@lichtblick/react`
+- `plugin:@lichtblick/typescript`
 
 **Typescript + React Example**
 
@@ -43,14 +43,14 @@ In your `.eslintrc.js`:
 ```js
 module.exports = {
   extends: [
-    "plugin:@foxglove/base",
-    "plugin:@foxglove/jest",
-    "plugin:@foxglove/react",
+    "plugin:@lichtblick/base",
+    "plugin:@lichtblick/jest",
+    "plugin:@lichtblick/react",
   ],
   overrides: [
     {
       files: ["*.ts", "*.tsx"],
-      extends: ["plugin:@foxglove/typescript"],
+      extends: ["plugin:@lichtblick/typescript"],
       parserOptions: {
         project: "tsconfig.json",
       },
@@ -59,7 +59,7 @@ module.exports = {
 };
 ```
 
-You can add `"plugin:@foxglove/typescript"` to the top level `extends` instead of using `overrides` if your project contains no `.js` files.
+You can add `"plugin:@lichtblick/typescript"` to the top level `extends` instead of using `overrides` if your project contains no `.js` files.
 
 ## License
 
@@ -74,6 +74,3 @@ tag=$(npm version minor) && echo "$tag"
 git push && git push origin "$tag"
 ```
 
-## Stay in touch
-
-Join our [Slack channel](https://foxglove.dev/slack) to ask questions, share feedback, and stay up to date on what our team is working on.

@@ -20,7 +20,7 @@ void (async () => {
   str ? 0 : 1; // allowed
   maybeStr ? 0 : 1; // allowed
   num ? 0 : 1; // eslint-disable-line @typescript-eslint/strict-boolean-expressions
-  num == 0 ? 0 : 1; // eslint-disable-line @foxglove/strict-equality
+  num == 0 ? 0 : 1; // eslint-disable-line @lichtblick/strict-equality
   num === 0 ? 0 : 1; // allowed
   maybeNum ? 0 : 1; // eslint-disable-line @typescript-eslint/strict-boolean-expressions
   maybeObj ? 0 : 1; // allowed
@@ -35,7 +35,7 @@ void undefined; // eslint-disable-line @typescript-eslint/no-meaningless-void-op
 <></>; // eslint-disable-line @typescript-eslint/no-unused-expressions
 
 class C {
-  private x = 1; // eslint-disable-line @foxglove/prefer-hash-private
+  private x = 1; // eslint-disable-line @lichtblick/prefer-hash-private
   constructor() {
     void this.x;
   }

@@ -2,7 +2,7 @@
 function isNullLiteral(node) {
   return (
     node.type === "Literal" &&
-    // eslint-disable-next-line @foxglove/strict-equality
+    // eslint-disable-next-line @lichtblick/strict-equality
     node.value === null &&
     !node.regex &&
     !node.bigint

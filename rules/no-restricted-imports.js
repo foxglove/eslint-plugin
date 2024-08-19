@@ -2,7 +2,7 @@ const builtinRules = require("eslint/use-at-your-own-risk").builtinRules;
 
 /**
  * Re-export the `no-restricted-imports` rules so that we can use them as
- * `@foxglove/no-restricted-imports` instead of `no-restricted-imports`.
+ * `@lichtblick/no-restricted-imports` instead of `no-restricted-imports`.
  *
  * This is to make accidental overrides more difficult. Without this any local
  * eslint config that defines its own `no-restricted-imports` rule will ignore
