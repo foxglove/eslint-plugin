@@ -1,11 +1,11 @@
 {
-  "name": "@foxglove/eslint-plugin",
-  "version": "1.0.1",
-  "description": "Foxglove ESLint rules and configuration",
+  "name": "@lichtblick/eslint-plugin",
+  "version": "1.0.0",
+  "description": "Lichtblick ESLint rules and configuration",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/foxglove/eslint-plugin.git"
+    "url": "https://github.com/Lichtblick-Suite/eslint-plugin.git"
   },
   "main": "index.js",
   "files": [
@@ -35,7 +35,7 @@
     "prettier": "^3"
   },
   "devDependencies": {
-    "@foxglove/eslint-plugin": "file:.",
+    "@lichtblick/eslint-plugin": "file:.",
     "@foxglove/tsconfig": "2.0.0",
     "@types/jest": "29.5.3",
     "@typescript-eslint/eslint-plugin": "6.1.0",
