@@ -12,6 +12,9 @@ module.exports = {
     type: "suggestion",
     fixable: "code",
     schema: [],
+    messages: {
+      missingLicenseError: "Missing license error",
+    },
   },
 
   create: (context) => {
@@ -25,7 +28,7 @@ module.exports = {
         );
         if (headerIndex === -1 || !prefixLinesAreValid) {
           context.report({
-            message: "Missing license header",
+            messageId: "missingLicenseError",
             loc: { start: 0, end: +source.indexOf("\n") + 1 },
             fix: () => {
               return { range: [0, 0], text: LICENSE_HEADER + "\n\n" };
