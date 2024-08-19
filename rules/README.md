@@ -1,6 +1,6 @@
 ## Rules
 
-The following rules are provided by `@lichtblick/eslint-plugin`.
+The following rules are provided by `@lichtblick/eslint-plugin`. You may need to enable the plugin by adding `@lichtblick` in the `plugins` section of your eslint configuration.
 
 **Key:** 🔧 = fixable, 💡 = has suggestions, 💭 = requires type information (TypeScript only)
 
