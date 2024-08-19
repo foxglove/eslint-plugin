@@ -2,7 +2,7 @@
 
 [![npm package](https://img.shields.io/npm/v/@lichtblick/eslint-plugin)](https://www.npmjs.com/package/@lichtblick/eslint-plugin)
 
-Default eslint configuration & rules.
+Lichtblick default eslint configuration & rules.
 
 Please err on the side of conservative changes to this repo - multiple Foxglove projects should adopt a change before making it a default.
 
