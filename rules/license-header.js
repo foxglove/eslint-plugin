@@ -31,9 +31,15 @@ module.exports = {
     return {
       Program: () => {
         const source = context.getSourceCode().getText();
-        const isNewFileHeaderPresent = source.indexOf(NEW_FILE_LICENSE_HEADER) !== -1;
-        const isModifiedFileHeaderPresent = source.indexOf(MODIFIED_FILE_LICENSE_HEADER) !== -1;
-        const prefixLines = source.substring(0, Math.max(0, source.indexOf('\n'))).trim().split("\n");
+        const isNewFileHeaderPresent =
+          source.indexOf(NEW_FILE_LICENSE_HEADER) !== -1;
+        const isModifiedFileHeaderPresent =
+          source.indexOf(MODIFIED_FILE_LICENSE_HEADER) !== -1;
+        const headerIndex = source.indexOf(MODIFIED_FILE_LICENSE_HEADER);
+        const prefixLines = source
+          .substring(0, Math.max(0, source.indexOf("\n")))
+          .trim()
+          .split("\n");
         const prefixLinesAreValid = prefixLines.every(
           (line) => line === "" || ALLOWED_PREFIX_LINES.includes(line)
         );
@@ -42,14 +48,24 @@ module.exports = {
           context.report({
             message: "Missing license header for a new file",
             loc: { start: 0, end: 0 },
-            fix: (fixer) => fixer.insertTextBeforeRange([0, 0], NEW_FILE_LICENSE_HEADER + "\n\n"),
+            fix: (fixer) =>
+              fixer.insertTextBeforeRange(
+                [0, 0],
+                NEW_FILE_LICENSE_HEADER + "\n\n"
+              ),
           });
-        } 
-        else if (!prefixLinesAreValid || (isModifiedFileHeaderPresent && headerIndex === -1)) {
+        } else if (
+          !prefixLinesAreValid ||
+          (isModifiedFileHeaderPresent && headerIndex === -1)
+        ) {
           context.report({
             message: "Missing or incorrect license header for a modified file",
             loc: { start: 0, end: 0 },
-            fix: (fixer) => fixer.insertTextBeforeRange([0, 0], MODIFIED_FILE_LICENSE_HEADER + "\n\n"),
+            fix: (fixer) =>
+              fixer.insertTextBeforeRange(
+                [0, 0],
+                MODIFIED_FILE_LICENSE_HEADER + "\n\n"
+              ),
           });
         }
       },
