@@ -61,6 +61,20 @@ module.exports = {
 
 You can add `"plugin:@lichtblick/typescript"` to the top level `extends` instead of using `overrides` if your project contains no `.js` files.
 
+## License Header Rule Configuration
+
+To use the license-header rule, your project must specify the license type in the ESLint configuration file (`.eslintrc`). This is done by defining an object with a `licenseType` attribute that matches your project's license.
+
+Here’s an example of how to configure it:
+
+```js
+rules:
+  "@lichtblick/license-header": ["error", {licenseType: "MPL-2.0"}]
+```
+
+In this example, the `licenseType` is set to "MPL-2.0", but you should replace it with the appropriate license type for your project (e.g., "MIT", "Apache-2.0").
+
+
 ## License
 
 @lichtblick/eslint-plugin is released under the [MIT License](/LICENSE.md).
@@ -73,4 +87,3 @@ You can add `"plugin:@lichtblick/typescript"` to the top level `extends` instead
 tag=$(npm version minor) && echo "$tag"
 git push && git push origin "$tag"
 ```
-

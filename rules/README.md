@@ -34,7 +34,10 @@ This rule accepts a single object option with the following default configuratio
 
 ```json
 {
-  "@lichtblick/no-boolean-parameters": ["error", { "allowLoneParameter": false }]
+  "@lichtblick/no-boolean-parameters": [
+    "error",
+    { "allowLoneParameter": false }
+  ]
 }
 ```
 
