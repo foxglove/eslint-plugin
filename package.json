@@ -1,6 +1,6 @@
 {
   "name": "@lichtblick/eslint-plugin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lichtblick ESLint rules and configuration",
   "license": "MIT",
   "repository": {
@@ -35,8 +35,8 @@
     "prettier": "^3"
   },
   "devDependencies": {
-    "@lichtblick/tsconfig": "1.0.0",
     "@lichtblick/eslint-plugin": "file:.",
+    "@lichtblick/tsconfig": "1.0.0",
     "@types/jest": "29.5.3",
     "@typescript-eslint/eslint-plugin": "6.1.0",
     "@typescript-eslint/parser": "6.1.0",
