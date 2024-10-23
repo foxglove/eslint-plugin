@@ -5,6 +5,7 @@
     "lib": ["es2020", "dom"],
     "jsx": "preserve",
     "noEmit": true,
-    "moduleResolution": "Node16"
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   }
 }
