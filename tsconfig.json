@@ -2,7 +2,7 @@
 {
   "extends": "@foxglove/tsconfig/base",
   "compilerOptions": {
-    "lib": ["es2020", "dom"],
+    "lib": ["es2022", "dom"],
     "jsx": "preserve",
     "noEmit": true,
     "module": "NodeNext",
