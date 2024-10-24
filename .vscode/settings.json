@@ -3,11 +3,9 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "eslint.options": {
-    "reportUnusedDisableDirectives": "error"
-  },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.prettierPath": "./node_modules/prettier",
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
