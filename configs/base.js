@@ -10,6 +10,8 @@ const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommen
 
 const foxglove = require("../plugin");
 
+const fixedFilenames = fixupPluginRules(filenames);
+
 /** @type {import("eslint").Linter.Config[]} */
 module.exports = [
   js.configs.recommended,
@@ -21,8 +23,26 @@ module.exports = [
     plugins: {
       "@foxglove": foxglove,
       import: importPlugin,
-      filenames: fixupPluginRules(filenames),
       es: fixupPluginRules(es),
+
+      // eslint-plugin-filenames allows rules to have options, but fixupPluginRules defaults to a
+      // schema that does not allow passing any options. We replace this with `false` to disable
+      // validation so that options can be passed in.
+      filenames: {
+        ...fixedFilenames,
+        rules: Object.fromEntries(
+          Object.entries(fixedFilenames.rules ?? {}).map(([ruleId, rule]) => [
+            ruleId,
+            {
+              ...rule,
+              meta: {
+                ...rule.meta,
+                schema: rule.meta?.schema ?? false,
+              },
+            },
+          ])
+        ),
+      },
     },
     rules: {
       // even new Safari versions do not support regexp lookbehinds
