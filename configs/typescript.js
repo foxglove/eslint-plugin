@@ -63,6 +63,19 @@ module.exports = [
       // Async functions without await are used to satisfy interface requirements
       "@typescript-eslint/require-await": "off",
 
+      "@typescript-eslint/restrict-template-expressions": [
+        "error",
+        // Based on the strictTypeChecked defaults, but with allowNumber: true
+        {
+          allowAny: false,
+          allowBoolean: false,
+          allowNullish: false,
+          allowNumber: true,
+          allowRegExp: false,
+          allowNever: false,
+        },
+      ],
+
       "@typescript-eslint/return-await": ["error", "always"],
 
       // require all cases to be checked in switch statements
