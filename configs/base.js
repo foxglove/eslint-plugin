@@ -1,10 +1,14 @@
 const { fixupPluginRules } = require("@eslint/compat");
 const js = require("@eslint/js");
-const foxglove = require("@foxglove/eslint-plugin/plugin");
+// @ts-expect-error Missing type definitions
 const es = require("eslint-plugin-es");
+// @ts-expect-error Missing type definitions
 const filenames = require("eslint-plugin-filenames");
+// @ts-expect-error Missing type definitions
 const importPlugin = require("eslint-plugin-import");
 const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommended");
+
+const foxglove = require("../plugin");
 
 /** @type {import("eslint").Linter.Config[]} */
 module.exports = [

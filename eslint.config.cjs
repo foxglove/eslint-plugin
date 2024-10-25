@@ -1,16 +1,8 @@
-const { FlatCompat } = require("@eslint/eslintrc");
-const js = require("@eslint/js");
 const foxglove = require("@foxglove/eslint-plugin");
 const globals = require("globals");
+const tseslint = require("typescript-eslint");
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
-/** @type {import("eslint").Linter.Config[]} */
-module.exports = [
+module.exports = tseslint.config(
   ...foxglove.configs.base,
   {
     languageOptions: {
@@ -22,20 +14,16 @@ module.exports = [
       },
     },
   },
-  ...compat.extends("plugin:@foxglove/typescript").map((config) => ({
+  ...foxglove.configs.typescript.map((config) => ({
     ...config,
-    files: ["**/*.ts", "**/*.tsx"],
+    files: ["**/*.@(ts|tsx)"],
   })),
-  {
-    files: ["**/*.ts", "**/*.tsx"],
-
-    languageOptions: {
-      ecmaVersion: 5,
-      sourceType: "script",
-
-      parserOptions: {
-        project: "tsconfig.json",
-      },
-    },
-  },
-];
+  ...foxglove.configs.react.map((config) => ({
+    ...config,
+    files: ["**/*.@(jsx|tsx)"],
+  })),
+  ...foxglove.configs.jest.map((config) => ({
+    ...config,
+    files: ["**/*.test.@(js|jsx|ts|tsx)"],
+  }))
+);
