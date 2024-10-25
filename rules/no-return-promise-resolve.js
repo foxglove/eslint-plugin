@@ -1,3 +1,4 @@
+/** @type {import("eslint").Rule.RuleModule} */
 module.exports = {
   meta: {
     type: "suggestion",
@@ -9,15 +10,32 @@ module.exports = {
     },
   },
 
-  create(context, _options) {
+  create(context) {
     return {
       [`:matches(:function[async=true] ReturnStatement, ArrowFunctionExpression[async=true]) > CallExpression > MemberExpression[object.name="Promise"][property.name=/^(resolve|reject)$/].callee`]:
+        /**
+         * @param {(
+         *   import("estree").MemberExpression & {
+         *     parent: import("estree").CallExpression & {
+         *       parent: import("estree").ReturnStatement | import("estree").ArrowFunctionExpression
+         *     }
+         *     property: import("estree").MemberExpression["property"] & { name: string }
+         *   }
+         * )} node
+         */
         (node) => {
           // The AST selector ensures that we are somewhere within an async function, but we might
           // be in a nested function that is not async. Check that the innermost function scope is
           // actually async.
-          const functionScope = context.getScope().variableScope;
-          if (functionScope.type !== "function" || !functionScope.block.async) {
+          const functionScope = context.sourceCode.getScope(node).variableScope;
+          if (
+            functionScope.type !== "function" ||
+            !(
+              /** @type {Partial<import("estree").Function>} */ (
+                functionScope.block
+              ).async
+            )
+          ) {
             return;
           }
           const sourceCode = context.getSourceCode();
@@ -46,12 +64,12 @@ module.exports = {
                   );
                 }
               }
-              const firstArgToken = sourceCode.getFirstToken(
-                callExpr.arguments[0]
-              );
+              const firstArgToken =
+                callExpr.arguments[0] &&
+                sourceCode.getFirstToken(callExpr.arguments[0]);
               const needsParens =
                 isArrowFunction &&
-                firstArgToken.type === "Punctuator" &&
+                firstArgToken?.type === "Punctuator" &&
                 firstArgToken.value === "{";
               const argText = sourceCode.getText(callExpr.arguments[0]);
               return fixer.replaceText(

@@ -1,5 +1,5 @@
 /**
- * @param {import("estree").Node} node
+ * @param {import("eslint").Rule.Node} node
  */
 function getEnclosingClass(node) {
   for (let current = node; current; current = current.parent) {
@@ -14,6 +14,7 @@ function getEnclosingClass(node) {
       return undefined;
     }
   }
+  return undefined;
 }
 
 /** @type {import("eslint").Rule.RuleModule} */
@@ -31,7 +32,7 @@ module.exports = {
   create: (context) => {
     /**
      * @typedef ClassInfo
-     * @property {Set<import("estree").Identifier>} privates
+     * @property {Set<import("estree").Identifier & import("eslint").Rule.NodeParentExtension>} privates
      * @property {Map<string, import("estree").Identifier[]>} memberReferences
      */
     /**
@@ -41,7 +42,7 @@ module.exports = {
     return {
       // Track any references to properties inside the class body, e.g. `this.foo`.
       [`MemberExpression:has(ThisExpression.object) > Identifier.property`]: (
-        /** @type {import("estree").Identifier} */ node
+        /** @type {import("estree").Identifier & { parent: import("estree").MemberExpression & import("eslint").Rule.Node }} */ node
       ) => {
         if (node.parent.object.type !== "ThisExpression") {
           // Avoid treating `this.foo.bar` as a reference to `private bar`.
@@ -68,7 +69,7 @@ module.exports = {
       // Track any private properties or methods on the class, e.g. `private foo`.
       [`:matches(PropertyDefinition, MethodDefinition[kind!="constructor"])[accessibility="private"] > Identifier.key`]:
         (
-          /** @type {import("estree").PropertyDefinition | import("estree").MethodDefinition} */
+          /** @type {import("estree").Identifier & import("eslint").Rule.NodeParentExtension} */
           node
         ) => {
           const cls = getEnclosingClass(node);
@@ -104,8 +105,7 @@ module.exports = {
                 messageId: "rename",
                 data: { newName },
                 *fix(fixer) {
-                  const privateToken = context
-                    .getSourceCode()
+                  const privateToken = context.sourceCode
                     .getTokens(privateIdentifier.parent)
                     .find(
                       (token) =>

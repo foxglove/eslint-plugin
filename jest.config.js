@@ -1,4 +1,6 @@
 module.exports = {
-  preset: "ts-jest",
   testMatch: ["<rootDir>/**/*.test.ts"],
+  transform: {
+    "^.+\\.(t|j)sx?$": "@swc/jest",
+  },
 };

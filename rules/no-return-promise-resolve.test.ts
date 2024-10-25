@@ -1,16 +1,16 @@
 import { RuleTester } from "@typescript-eslint/rule-tester";
 import { TSESLint } from "@typescript-eslint/utils";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const rule = require("./no-return-promise-resolve") as TSESLint.RuleModule<
   "returnResolve" | "returnReject"
 >;
 
 const ruleTester = new RuleTester({
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: 2020,
-    project: "./tsconfig.test.json",
+  languageOptions: {
+    parserOptions: {
+      project: "./tsconfig.test.json",
+    },
   },
 });
 
@@ -47,7 +47,7 @@ async function fooAsync() {
   return Promise.reject(42);
   return Promise.reject<number>(42);
 }
-      `.trimRight(),
+      `.trimEnd(),
       errors: [
         { messageId: "returnResolve", line: 3, column: 10 },
         { messageId: "returnResolve", line: 4, column: 10 },
@@ -61,7 +61,7 @@ async function fooAsync() {
   throw 42;
   throw 42;
 }
-      `.trimRight(),
+      `.trimEnd(),
     },
     {
       code: "(async function () { return Promise.resolve(); })()",
