@@ -4,9 +4,12 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
+    "outDir": "dist",
     "lib": ["es2022", "dom"],
     "jsx": "preserve",
-    "noEmit": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declarationMap": false,
     "module": "NodeNext",
     "moduleResolution": "NodeNext"
   }

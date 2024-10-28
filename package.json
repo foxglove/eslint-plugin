@@ -1,6 +1,6 @@
 {
   "name": "@foxglove/eslint-plugin",
-  "version": "2.0.0",
+  "version": "2.0.0-beta.4",
   "description": "Foxglove ESLint rules and configuration",
   "license": "MIT",
   "repository": {
@@ -8,14 +8,17 @@
     "url": "https://github.com/foxglove/eslint-plugin.git"
   },
   "main": "index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "**/*.js"
+    "**/*.js",
+    "dist"
   ],
   "scripts": {
-    "test": "jest",
-    "tsc": "tsc",
     "lint": "eslint .",
-    "prettier": "prettier"
+    "prepack": "tsc",
+    "prettier": "prettier",
+    "test": "jest",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@eslint/compat": "^1",
