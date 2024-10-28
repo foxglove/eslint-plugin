@@ -4,62 +4,33 @@
 
 Foxglove default eslint configuration & rules.
 
-Please err on the side of conservative changes to this repo - multiple Foxglove projects should adopt a change before making it a default.
-
 ## Rules
 
 See [rules/README.md](rules/README.md) for details on each rule.
 
 ## Installation
 
-The following configurations are available:
-
-- `plugin:@foxglove/base`
-- `plugin:@foxglove/jest`
-- `plugin:@foxglove/react`
-- `plugin:@foxglove/typescript`
-
-**Typescript + React Example**
-
 ```sh
 yarn add -D \
     @foxglove/eslint-plugin \
-    @typescript-eslint/eslint-plugin \
-    @typescript-eslint/parser \
+    typescript-eslint \
     eslint \
-    eslint-config-prettier \
-    eslint-plugin-es \
-    eslint-plugin-filenames \
-    eslint-plugin-import \
-    eslint-plugin-jest \
-    eslint-plugin-prettier \
-    eslint-plugin-react \
-    eslint-plugin-react-hooks \
     prettier
 ```
 
-In your `.eslintrc.js`:
+In your `eslint.config.cjs`:
 
 ```js
-module.exports = {
-  extends: [
-    "plugin:@foxglove/base",
-    "plugin:@foxglove/jest",
-    "plugin:@foxglove/react",
-  ],
-  overrides: [
-    {
-      files: ["*.ts", "*.tsx"],
-      extends: ["plugin:@foxglove/typescript"],
-      parserOptions: {
-        project: "tsconfig.json",
-      },
-    },
-  ],
-};
-```
+const foxglove = require("@foxglove/eslint-plugin");
+const tseslint = require("typescript-eslint");
 
-You can add `"plugin:@foxglove/typescript"` to the top level `extends` instead of using `overrides` if your project contains no `.js` files.
+module.exports = tseslint.config(
+  ...foxglove.configs.base,
+  ...foxglove.configs.react,
+  ...foxglove.configs.jest,
+  ...foxglove.configs.typescript
+);
+```
 
 ## License
 
