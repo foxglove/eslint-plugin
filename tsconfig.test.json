@@ -2,7 +2,7 @@
 {
   "extends": "@foxglove/tsconfig/base",
   "compilerOptions": {
-    "lib": ["es2020", "dom"],
+    "lib": ["es2022", "dom"],
     "noEmit": true
   },
   // eslint RuleTester uses fake files named "file.ts", which need to be included in the project
