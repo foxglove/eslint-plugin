@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "prepack": "build",
+    "prepack": "npm run build",
     "prettier": "prettier",
     "test": "jest",
     "build": "rm -rf dist && tsc"
