@@ -15,10 +15,10 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "prepack": "tsc",
+    "prepack": "build",
     "prettier": "prettier",
     "test": "jest",
-    "tsc": "tsc"
+    "build": "rm -rf dist && tsc"
   },
   "dependencies": {
     "@eslint/compat": "^1",

@@ -30,7 +30,7 @@ jobs:
           restore-keys: v1-${{ runner.os }}-node-
 
       - run: npm ci
-      - run: npm run tsc
+      - run: npm run build
       - run: npm run lint
       - run: npm run test
 
