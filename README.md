@@ -18,17 +18,28 @@ yarn add -D \
     prettier
 ```
 
-In your `eslint.config.cjs`:
+In your `eslint.config.mjs`:
 
 ```js
-const foxglove = require("@foxglove/eslint-plugin");
-const tseslint = require("typescript-eslint");
+import foxglove from "@foxglove/eslint-plugin";
+import tseslint from "typescript-eslint";
 
-module.exports = tseslint.config(
+export default tseslint.config(
   ...foxglove.configs.base,
   ...foxglove.configs.react,
   ...foxglove.configs.jest,
-  ...foxglove.configs.typescript
+  ...foxglove.configs.typescript.map((config) => ({
+    ...config,
+    files: ["**/*.ts"],
+  })),
+  {
+    files: ["**/*.ts"],
+    languageOptions: {
+      parserOptions: {
+        project: "tsconfig.eslint.json",
+      },
+    },
+  }
 );
 ```
 
