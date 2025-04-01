@@ -75,6 +75,7 @@ module.exports = [
 
       // require double equal for null and undefined, triple equal everywhere else
       "@foxglove/strict-equality": "error",
+      "@foxglove/no-never-initialized-let": "error",
       "@foxglove/no-return-promise-resolve": "error",
       "@foxglove/prefer-hash-private": "error",
 
