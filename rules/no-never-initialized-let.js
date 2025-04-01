@@ -10,7 +10,7 @@ module.exports = {
   create: (context) => {
     const { sourceCode } = context;
     return {
-      [`VariableDeclaration[kind=let] > VariableDeclarator[id.type=Identifier]:not([init])`](
+      [`VariableDeclaration[kind=let]:not([declare=true]) > VariableDeclarator[id.type=Identifier]:not([init])`](
         /** @type {import("estree").VariableDeclarator & { parent: import("eslint").Rule.Node }} */
         node
       ) {

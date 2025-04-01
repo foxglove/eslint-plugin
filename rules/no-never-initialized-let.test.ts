@@ -21,6 +21,8 @@ let y = undefined;
 let z: number | undefined = undefined;
 let a = x, b = y;
 
+declare let c: string | undefined;
+
 const foo = (two: string): void => {
   let one: string | undefined;
   if (one !== two) {
