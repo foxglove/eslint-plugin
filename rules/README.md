@@ -40,38 +40,6 @@ This rule accepts a single object option with the following default configuratio
 
 - `allowLoneParameter: true` will not report an error if a boolean parameter is the **only** parameter to a function.
 
-### [`@foxglove/no-never-initialized-let`](./no-never-initialized-let.js)
-
-Disallow variable declarations that use `let` but have no intitial value and are never assigned. These variables will always be `undefined` and are likely a programmer error.
-
-The builtin [prefer-const](https://eslint.org/docs/latest/rules/prefer-const) rule doesn't flag these because they lack an initializer. Otherwise, they could be flagged by [init-declarations](https://eslint.org/docs/latest/rules/init-declarations), but this rule is mostly stylistic and has some implications for TypeScript type inference & refinement. (See [eslint/eslint#19581](https://github.com/eslint/eslint/issues/19581) & [microsoft/TypeScript#61496](https://github.com/microsoft/TypeScript/issues/61496) for more discussion.)
-
-Examples of **incorrect** code for this rule:
-
-```ts
-let prevX;
-let prevY;
-if (x !== prevX) {
-  prevX = x;
-}
-if (y !== prevY) {
-  prevX = x; // typo, should have been Y
-}
-```
-
-Examples of **correct** code for this rule:
-
-```ts
-let prevX;
-let prevY;
-if (x !== prevX) {
-  prevX = x;
-}
-if (y !== prevY) {
-  prevY = y;
-}
-```
-
 ### [`@foxglove/no-return-promise-resolve`](./no-return-promise-resolve.js) 🔧
 
 Disallow returning `Promise.resolve(...)` or `Promise.reject(...)` inside an async function. This is redundant since an async function will always return a Promise — use `return` or `throw` directly instead.
