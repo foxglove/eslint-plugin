@@ -30,6 +30,9 @@ void (async () => {
 
 void undefined; // eslint-disable-line @typescript-eslint/no-meaningless-void-operator
 
+let x: string | undefined; // eslint-disable-line no-unassigned-vars
+console.log(x);
+
 /* eslint-enable @typescript-eslint/no-unused-expressions */
 42; // eslint-disable-line @typescript-eslint/no-unused-expressions
 <></>; // eslint-disable-line @typescript-eslint/no-unused-expressions
