@@ -3,36 +3,26 @@ import { fixupPluginRules } from "@eslint/compat";
 import js from "@eslint/js";
 // import tsParser from "@typescript-eslint/parser";
 import es from "eslint-plugin-es";
-// import filenamesPlugin from "eslint-plugin-filenames";
+import filenamesPlugin from "eslint-plugin-filenames";
 import importPlugin from "eslint-plugin-import";
+import prettierPlugin from "eslint-plugin-prettier/recommended";
 
 import lichtblickPlugin from "../plugin.mjs";
 
-// const fixedFilenames = fixupPluginRules(filenamesPlugin);
+const fixedFilenames = fixupPluginRules(filenamesPlugin);
 const fixedEs = fixupPluginRules(es);
 
 export default [
   js.configs.recommended,
+  prettierPlugin,
   {
     plugins: {
       "@lichtblick": lichtblickPlugin,
       import: importPlugin,
       es: fixedEs,
-      // filenames: {
-      //   ...fixedFilenames,
-      //   rules: Object.fromEntries(
-      //     Object.entries(fixedFilenames.rules ?? {}).map(([ruleId, rule]) => [
-      //       ruleId,
-      //       {
-      //         ...rule,
-      //         meta: {
-      //           ...rule.meta,
-      //           schema: rule.meta?.schema ?? false,
-      //         },
-      //       },
-      //     ])
-      //   ),
-      // },
+      filenames: {
+        ...fixedFilenames,
+      },
     },
     rules: {
       // even new Safari versions do not support regexp lookbehinds
@@ -61,7 +51,7 @@ export default [
         },
       ],
 
-      // "filenames/match-exported": "error",
+      "filenames/match-exported": "error",
 
       // require double equal for null and undefined, triple equal everywhere else
       "@lichtblick/strict-equality": "error",
