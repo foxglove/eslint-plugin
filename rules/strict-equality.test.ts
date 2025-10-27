@@ -1,16 +1,17 @@
 import { RuleTester } from "@typescript-eslint/rule-tester";
 import { TSESLint } from "@typescript-eslint/utils";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const rule = require("./strict-equality") as TSESLint.RuleModule<
+import rawRule from "./strict-equality.cjs";
+
+const rule = rawRule as unknown as TSESLint.RuleModule<
   "unexpected" | "unexpectedStrict"
 >;
 
 const ruleTester = new RuleTester({
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: 2020,
-    project: "./tsconfig.test.json",
+  languageOptions: {
+    parserOptions: {
+      project: "./tsconfig.test.json",
+    },
   },
 });
 

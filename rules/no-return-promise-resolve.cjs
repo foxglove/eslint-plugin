@@ -3,20 +3,21 @@ module.exports = {
     type: "suggestion",
     fixable: "code",
     schema: [],
+    defaultOptions: [],
     messages: {
       returnResolve: `Values must be returned directly from async functions`,
       returnReject: `Errors must be thrown directly from async functions`,
     },
   },
 
-  create(context, _options) {
+  create(context) {
     return {
       [`:matches(:function[async=true] ReturnStatement, ArrowFunctionExpression[async=true]) > CallExpression > MemberExpression[object.name="Promise"][property.name=/^(resolve|reject)$/].callee`]:
         (node) => {
           // The AST selector ensures that we are somewhere within an async function, but we might
           // be in a nested function that is not async. Check that the innermost function scope is
           // actually async.
-          const functionScope = context.getScope().variableScope;
+          const functionScope = context.sourceCode.getScope(node).variableScope;
           if (functionScope.type !== "function" || !functionScope.block.async) {
             return;
           }

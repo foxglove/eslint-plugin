@@ -20,6 +20,7 @@ module.exports = {
         additionalProperties: false,
       },
     ],
+    defaultOptions: [],
     messages: {
       wrongHeaderError:
         "There is an error with the file header. Please check if the header exists or if there is a mistake in it.",

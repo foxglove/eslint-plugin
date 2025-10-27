@@ -1,11 +1,19 @@
-// -*- jsonc -*-
 {
   "extends": "@lichtblick/tsconfig/base",
   "compilerOptions": {
     "lib": ["es2020", "dom"],
     "jsx": "preserve",
     "noEmit": true,
-    "moduleResolution": "Node16",
-    "module": "Node16"
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "types": ["jest", "node"],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "checkJs": true,
+    "outDir": "dist",
+    "emitDeclarationOnly": true,
+    "declarationMap": false
   }
 }

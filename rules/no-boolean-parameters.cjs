@@ -1,3 +1,7 @@
+// import { ESLintUtils } from "@typescript-eslint/utils";
+// import { unionTypeParts } from "tsutils";
+// import ts from "typescript";
+
 const { ESLintUtils } = require("@typescript-eslint/utils");
 const { unionTypeParts } = require("tsutils");
 const ts = require("typescript");
@@ -84,6 +88,7 @@ module.exports = {
         additionalProperties: false,
       },
     ],
+    defaultOptions: [],
     messages: {
       booleanTrap: `Don't use raw boolean value{{paramInfo}} as a parameter{{funcInfo}}; call sites will appear ambiguous (the "boolean trap")`,
       wrapParamInObject: `Replace with {{pattern}}`,

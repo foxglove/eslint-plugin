@@ -4,31 +4,31 @@
 import { RuleTester } from "@typescript-eslint/rule-tester";
 import { TSESLint } from "@typescript-eslint/utils";
 
+import rawRule from "./license-header.cjs";
+
 // should be the same of LICENSE_HEADER defined on license-header.js file.
 const mplLicense = "MPL-2.0";
 const mitLicense = "MIT";
 const noLicense = "";
 const currentYear = new Date().getFullYear().toString();
-
 function createHeader(license: string, year?: string) {
+  const safeYear = year ?? currentYear;
   return (
-    `// SPDX-FileCopyrightText: Copyright (C) 2023-${year} Bayerische Motoren Werke Aktiengesellschaft (BMW AG)<lichtblick@bmwgroup.com>\n` +
+    `// SPDX-FileCopyrightText: Copyright (C) 2023-${safeYear} Bayerische Motoren Werke Aktiengesellschaft (BMW AG)<lichtblick@bmwgroup.com>\n` +
     `// SPDX-License-Identifier: ${license}`
   ).trimEnd();
 }
 
-const rule =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require("./license-header") as TSESLint.RuleModule<
-    "wrongHeaderError" | "missingTypeOfLicenseError" | "prefixLinesError",
-    Array<Record<string, string>>
-  >;
+const rule = rawRule as unknown as TSESLint.RuleModule<
+  "wrongHeaderError" | "missingTypeOfLicenseError" | "prefixLinesError",
+  [{ licenseType: string }]
+>;
 
 const ruleTester = new RuleTester({
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: 2020,
-    project: "./tsconfig.test.json",
+  languageOptions: {
+    parserOptions: {
+      project: "./tsconfig.test.json",
+    },
   },
 });
 
@@ -68,21 +68,24 @@ var b = 2
 console.log(1 + 2)
 `;
 
-const invalidLichtblickHeaderWithMissingTypeOfLicense = `
-${createHeader(noLicense, currentYear)}
+const invalidLichtblickHeaderWithMissingTypeOfLicense =
+  `
+` +
+  createHeader(noLicense, currentYear) +
+  `
 
 `;
 
 const invalidLichtblickHeaderWithWrongTypeOfLicense =
-  `${createHeader(mplLicense, currentYear)}` + "\n\n";
+  createHeader(mplLicense, currentYear) + "\n\n";
 
 const invalidLichtblickHeaderWrongYear =
-  `${createHeader(mplLicense, "2024")}` + "\n\n";
+  createHeader(mplLicense, "2024") + "\n\n";
 
 const importCode = "import React from 'react';\n";
 
 const invalidLichtblickHeaderDuplicated =
-  `${importCode}` + `${createHeader(mplLicense, currentYear)}` + "\n\n";
+  importCode + createHeader(mplLicense, currentYear) + "\n\n";
 
 ruleTester.run("check-license-header", rule, {
   valid: [
@@ -129,7 +132,7 @@ ruleTester.run("check-license-header", rule, {
     },
     {
       code: invalidLichtblickHeaderWithMissingTypeOfLicense,
-      options: [],
+      options: [{ licenseType: "" }],
       errors: [{ messageId: "missingTypeOfLicenseError" }],
     },
     {
@@ -149,10 +152,7 @@ ruleTester.run("check-license-header", rule, {
       options: [{ licenseType: "MPL-2.0" }],
       errors: [{ messageId: "prefixLinesError" }],
       output:
-        createHeader(mplLicense, currentYear) +
-        "\n\n" +
-        `${importCode}` +
-        "\n\n",
+        createHeader(mplLicense, currentYear) + "\n\n" + importCode + "\n\n",
     },
   ],
 });

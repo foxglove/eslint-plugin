@@ -22,6 +22,7 @@ module.exports = {
       unexpectedStrict: `Prefer 'x {{expectedOp}} {{literal}}' to catch both null and undefined`,
     },
   },
+  defaultOptions: [],
 
   create(context) {
     const sourceCode = context.getSourceCode();

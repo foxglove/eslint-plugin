@@ -28,6 +28,7 @@ module.exports = {
       rename: "Rename to {{newName}}",
     },
   },
+  defaultOptions: [],
   create: (context) => {
     /**
      * @typedef ClassInfo
