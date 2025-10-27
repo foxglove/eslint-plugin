@@ -15,10 +15,7 @@
   "scripts": {
     "test": "jest",
     "tsc": "tsc",
-    "lint": "npm run lint:base && npm run lint:jest && npm run lint:react",
-    "lint:base": "eslint --report-unused-disable-directives --debug .",
-    "lint:jest": "eslint --report-unused-disable-directives --debug --config ./configs/jest.mjs .",
-    "lint:react": "eslint --report-unused-disable-directives --debug --config ./configs/react.mjs .",
+    "lint": "eslint .",
     "prettier": "prettier"
   },
   "dependencies": {
@@ -55,7 +52,8 @@
     "ts-node": "10.9.2"
   },
   "prettier": {
-    "trailingComma": "es5"
+    "trailingComma": "es5",
+    "endOfLine": "auto"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

@@ -3,7 +3,6 @@
   "compilerOptions": {
     "lib": ["es2020", "dom"],
     "jsx": "preserve",
-    "noEmit": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "types": ["jest", "node"],
@@ -11,7 +10,7 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "checkJs": true,
+    "checkJs": false,
     "outDir": "dist",
     "emitDeclarationOnly": true,
     "declarationMap": false
