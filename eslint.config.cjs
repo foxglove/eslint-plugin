@@ -1,6 +1,7 @@
-const foxglove = require("@foxglove/eslint-plugin");
 const globals = require("globals");
 const tseslint = require("typescript-eslint");
+
+const foxglove = require(".");
 
 module.exports = tseslint.config(
   {

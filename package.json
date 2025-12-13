@@ -13,10 +13,13 @@
     "**/*.js",
     "dist"
   ],
+  "packageManager": "yarn@4.12.0",
   "scripts": {
-    "lint": "eslint .",
-    "prepack": "npm run build",
-    "prettier": "prettier",
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
+    "lint": "eslint --fix .",
+    "lint:check": "eslint .",
+    "prepack": "yarn run build",
     "test": "jest",
     "build": "rm -rf dist && tsc"
   },
@@ -39,7 +42,6 @@
     "eslint": "^9.27.0"
   },
   "devDependencies": {
-    "@foxglove/eslint-plugin": "file:.",
     "@foxglove/tsconfig": "2.0.0",
     "@swc/core": "1.7.39",
     "@swc/jest": "0.2.36",
