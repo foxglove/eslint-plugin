@@ -14,8 +14,7 @@ See [rules/README.md](rules/README.md) for details on each rule.
 yarn add -D \
     @foxglove/eslint-plugin \
     typescript-eslint \
-    eslint \
-    prettier
+    eslint
 ```
 
 In your `eslint.config.cjs`:
