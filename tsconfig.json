@@ -1,6 +1,8 @@
 // -*- jsonc -*-
 {
   "extends": "@foxglove/tsconfig/base",
+  "include": ["**/*.js", "**/*.ts", "**/*.tsx"],
+  "exclude": ["dist", "node_modules"],
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
