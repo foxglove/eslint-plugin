@@ -27,7 +27,7 @@ module.exports = tseslint.config(
   ...foxglove.configs.base,
   ...foxglove.configs.react,
   ...foxglove.configs.jest,
-  ...foxglove.configs.typescript
+  ...foxglove.configs.typescript,
 );
 ```
 

@@ -39,7 +39,7 @@ module.exports = [
                 schema: rule.meta?.schema ?? false,
               },
             },
-          ])
+          ]),
         ),
       },
     },

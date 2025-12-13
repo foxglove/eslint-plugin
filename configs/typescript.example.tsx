@@ -14,7 +14,7 @@ void (async () => {
   wut: any, // eslint-disable-line @typescript-eslint/no-explicit-any
   maybeStr?: string,
   maybeNum?: number,
-  maybeObj?: Record<string, unknown>
+  maybeObj?: Record<string, unknown>,
 ) => {
   // strict boolean checks are required for everything except strings
   str ? 0 : 1; // allowed
