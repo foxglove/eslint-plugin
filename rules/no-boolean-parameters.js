@@ -148,7 +148,7 @@ module.exports = {
                   ts.TypeFlags.Void |
                   ts.TypeFlags.Undefined |
                   ts.TypeFlags.Null |
-                  ts.TypeFlags.Never)
+                  ts.TypeFlags.Never),
             );
           const { paramName, funcName } = getData(param);
           if (isBoolean) {

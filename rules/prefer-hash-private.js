@@ -42,7 +42,7 @@ module.exports = {
     return {
       // Track any references to properties inside the class body, e.g. `this.foo`.
       [`MemberExpression:has(ThisExpression.object) > Identifier.property`]: (
-        /** @type {import("estree").Identifier & { parent: import("estree").MemberExpression & import("eslint").Rule.Node }} */ node
+        /** @type {import("estree").Identifier & { parent: import("estree").MemberExpression & import("eslint").Rule.Node }} */ node,
       ) => {
         if (node.parent.object.type !== "ThisExpression") {
           // Avoid treating `this.foo.bar` as a reference to `private bar`.
@@ -70,7 +70,7 @@ module.exports = {
       [`:matches(PropertyDefinition, MethodDefinition[kind!="constructor"])[accessibility="private"] > Identifier.key`]:
         (
           /** @type {import("estree").Identifier & import("eslint").Rule.NodeParentExtension} */
-          node
+          node,
         ) => {
           const cls = getEnclosingClass(node);
           if (!cls) {
@@ -109,7 +109,7 @@ module.exports = {
                     .getTokens(privateIdentifier.parent)
                     .find(
                       (token) =>
-                        token.type === "Keyword" && token.value === "private"
+                        token.type === "Keyword" && token.value === "private",
                     );
                   if (privateToken) {
                     yield fixer.removeRange([

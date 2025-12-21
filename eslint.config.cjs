@@ -29,5 +29,5 @@ module.exports = tseslint.config(
   ...foxglove.configs.jest.map((config) => ({
     ...config,
     files: ["**/*.test.@(js|jsx|ts|tsx)"],
-  }))
+  })),
 );

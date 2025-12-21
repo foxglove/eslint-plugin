@@ -32,7 +32,7 @@ module.exports = {
 
     function isUndefinedLiteral(
       /** @type {import("estree").BinaryExpression["left" | "right"]}  */
-      node
+      node,
     ) {
       return node.type === "Identifier" && node.name === "undefined";
     }
@@ -58,7 +58,7 @@ module.exports = {
         const operatorToken = sourceCode.getFirstTokenBetween(
           node.left,
           node.right,
-          (token) => token.value === node.operator
+          (token) => token.value === node.operator,
         );
         if (!operatorToken) {
           throw new Error(`Expected ${node.operator} token`);
