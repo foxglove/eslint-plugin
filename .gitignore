@@ -1,5 +1,6 @@
 .DS_Store
+.yarn/
 *.log
 *.tsbuildinfo
-node_modules/
 dist
+node_modules/
