@@ -1,5 +1,6 @@
 const plugin = require("./plugin");
 
+/** @type {import("eslint").ESLint.Plugin} */
 module.exports = {
   // Rules are stored in a separate file to avoid circular dependency
   ...plugin,

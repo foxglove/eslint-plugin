@@ -1,13 +1,20 @@
 const globals = require("globals");
 const tseslint = require("typescript-eslint");
 
-const foxglove = require(".");
+const foxglove = require("./index");
+
+/** @typedef {import("eslint").Linter.Config} Config */
+
+const base = /** @type {Config[]} */ (foxglove.configs?.base);
+const typescript = /** @type {Config[]} */ (foxglove.configs?.typescript);
+const react = /** @type {Config[]} */ (foxglove.configs?.react);
+const jest = /** @type {Config[]} */ (foxglove.configs?.jest);
 
 module.exports = tseslint.config(
   {
     ignores: ["dist"],
   },
-  ...foxglove.configs.base,
+  ...base,
   {
     languageOptions: {
       globals: {
@@ -18,15 +25,15 @@ module.exports = tseslint.config(
       },
     },
   },
-  ...foxglove.configs.typescript.map((config) => ({
+  ...typescript.map((config) => ({
     ...config,
     files: ["**/*.@(ts|tsx)"],
   })),
-  ...foxglove.configs.react.map((config) => ({
+  ...react.map((config) => ({
     ...config,
     files: ["**/*.@(jsx|tsx)"],
   })),
-  ...foxglove.configs.jest.map((config) => ({
+  ...jest.map((config) => ({
     ...config,
     files: ["**/*.test.@(js|jsx|ts|tsx)"],
   }))
