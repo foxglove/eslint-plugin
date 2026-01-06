@@ -39,7 +39,7 @@
     "typescript-eslint": "^8"
   },
   "peerDependencies": {
-    "eslint": "^9"
+    "eslint": "^9.27.0"
   },
   "devDependencies": {
     "@foxglove/tsconfig": "2.0.0",
