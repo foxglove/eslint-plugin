@@ -38,8 +38,13 @@ module.exports = tseslint.config(
 ## Releasing
 
 ```sh
-tag=$(npm version minor) && echo "$tag"
-git push && git push origin "$tag"
+yarn version minor && \
+  tag="v$(jq -r .version package.json)" && \
+  git add package.json && \
+  git commit -m "$tag" && \
+  git tag "$tag" && \
+  git push && \
+  git push origin "$tag"
 ```
 
 ## Stay in touch
