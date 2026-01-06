@@ -38,11 +38,14 @@ module.exports = tseslint.config(
 
 ## Releasing
 
-**Note**: You must use npm 7+ (not yarn) to test this repo locally, due to the self link in `package.json`.
-
 ```sh
-tag=$(npm version minor) && echo "$tag"
-git push && git push origin "$tag"
+yarn version minor && \
+  tag="v$(jq -r .version package.json)" && \
+  git add package.json && \
+  git commit -m "$tag" && \
+  git tag "$tag" && \
+  git push && \
+  git push origin "$tag"
 ```
 
 ## Stay in touch

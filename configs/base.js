@@ -4,7 +4,6 @@ const js = require("@eslint/js");
 const es = require("eslint-plugin-es");
 // @ts-expect-error Missing type definitions
 const filenames = require("eslint-plugin-filenames");
-// @ts-expect-error Missing type definitions
 const importPlugin = require("eslint-plugin-import");
 const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommended");
 

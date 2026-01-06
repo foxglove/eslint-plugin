@@ -1,5 +1,4 @@
 const reactPlugin = require("eslint-plugin-react");
-// @ts-expect-error Missing type definitions
 const hooksPlugin = require("eslint-plugin-react-hooks");
 
 /** @type {import("eslint").Linter.Config[]} */

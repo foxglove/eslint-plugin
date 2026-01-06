@@ -1,4 +1,3 @@
-// @ts-expect-error Missing type definitions
 const importPlugin = require("eslint-plugin-import");
 const tseslint = require("typescript-eslint");
 
