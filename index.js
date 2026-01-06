@@ -1,6 +1,12 @@
 const plugin = require("./plugin");
 
-/** @type {import("eslint").ESLint.Plugin} */
+/** @typedef {import("eslint").Linter.Config[]} Configs */
+
+/**
+ * @type {import("eslint").ESLint.Plugin & {
+ *   configs: { base: Configs; jest: Configs; react: Configs; typescript: Configs }
+ * }}
+ */
 module.exports = {
   // Rules are stored in a separate file to avoid circular dependency
   ...plugin,

@@ -3,12 +3,7 @@ const tseslint = require("typescript-eslint");
 
 const foxglove = require("./index");
 
-/** @typedef {import("eslint").Linter.Config} Config */
-
-const base = /** @type {Config[]} */ (foxglove.configs?.base);
-const typescript = /** @type {Config[]} */ (foxglove.configs?.typescript);
-const react = /** @type {Config[]} */ (foxglove.configs?.react);
-const jest = /** @type {Config[]} */ (foxglove.configs?.jest);
+const { base, typescript, react, jest } = foxglove.configs;
 
 module.exports = tseslint.config(
   {
