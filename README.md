@@ -14,8 +14,7 @@ See [rules/README.md](rules/README.md) for details on each rule.
 yarn add -D \
     @foxglove/eslint-plugin \
     typescript-eslint \
-    eslint \
-    prettier
+    eslint
 ```
 
 In your `eslint.config.cjs`:
@@ -28,7 +27,7 @@ module.exports = tseslint.config(
   ...foxglove.configs.base,
   ...foxglove.configs.react,
   ...foxglove.configs.jest,
-  ...foxglove.configs.typescript
+  ...foxglove.configs.typescript,
 );
 ```
 

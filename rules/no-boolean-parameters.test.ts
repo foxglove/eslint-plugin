@@ -22,7 +22,7 @@ ruleTester.run("no-boolean-parameters", rule, {
     "function foo(a: void | undefined) {}",
     `
       function acceptsFoo(_: (a: boolean) => void) {}  // eslint-disable-line @rule-tester/no-boolean-parameters
-      acceptsFoo((a) => {}); // ok    
+      acceptsFoo((a) => {}); // ok
     `,
     {
       code: "function foo(a: boolean) {}",

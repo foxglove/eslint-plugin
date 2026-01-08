@@ -55,12 +55,12 @@ module.exports = {
                 if (isArrowFunction) {
                   return fixer.replaceText(
                     returnOrArrowFunction.body,
-                    `{ throw ${sourceCode.getText(callExpr.arguments[0])}; }`
+                    `{ throw ${sourceCode.getText(callExpr.arguments[0])}; }`,
                   );
                 } else {
                   return fixer.replaceText(
                     returnOrArrowFunction,
-                    `throw ${sourceCode.getText(callExpr.arguments[0])};`
+                    `throw ${sourceCode.getText(callExpr.arguments[0])};`,
                   );
                 }
               }
@@ -74,7 +74,7 @@ module.exports = {
               const argText = sourceCode.getText(callExpr.arguments[0]);
               return fixer.replaceText(
                 callExpr,
-                needsParens ? `(${argText})` : argText
+                needsParens ? `(${argText})` : argText,
               );
             },
           });
