@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/foxglove/eslint-plugin.git"
+    "url": "git+https://github.com/foxglove/eslint-plugin.git"
   },
   "main": "index.js",
   "types": "dist/index.d.ts",
