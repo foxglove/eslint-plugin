@@ -10,6 +10,8 @@ Prohibit boolean parameters to functions, including optional parameters and defa
 
 In languages without [argument labels](https://docs.swift.org/swift-book/LanguageGuide/Functions.html), boolean parameters often point to an API anti-pattern called the [**boolean trap**](https://ariya.io/2011/08/hall-of-api-shame-boolean-trap). For example, with a function like `repaint(immediate: boolean)`, a reader looking at a call site sees `repaint(true);` and loses key context that `true` means the repaint should be `immediate`.
 
+The preferred alternative is to use a **string union** so that call sites are self-documenting (e.g., `draw("immediate")` instead of `draw(true)`). Wrapping the boolean in an options object is also acceptable.
+
 This rule does currently allow unions of booleans and other types like `value: boolean | number`. This approach was chosen because some common library types like `React.ReactNode` are unions of primitives, and it would be too noisy to prohibit all of these.
 
 Examples of **incorrect** code for this rule:
@@ -23,6 +25,12 @@ const draw = (immediate = false) => {};
 Examples of **correct** code for this rule:
 
 ```ts
+// Preferred: use a string union
+function draw(immediate: "immediate" | "not-immediate") {}
+const draw = (immediate?: "immediate" | "not-immediate") => {};
+const draw = (immediate: "immediate" | "not-immediate" = "not-immediate") => {};
+
+// Alternative: wrap in an options object
 function draw({ immediate }: { immediate: boolean }) {}
 const draw = ({ immediate }: { immediate?: boolean }) => {};
 const draw = ({ immediate = false }: { immediate: boolean }) => {};
