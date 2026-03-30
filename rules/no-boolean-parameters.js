@@ -238,6 +238,9 @@ module.exports = {
                 paramInfo: paramName ? ` '${paramName}'` : "",
                 funcInfo: funcName ? ` to '${funcName}'` : "",
               },
+              // String union is listed first as the generally preferred approach.
+              // The options object alternative may be better when the function is
+              // likely to accept additional options in the future.
               suggest: [
                 ...getStringUnionSuggestions(param, context),
                 ...getSuggestions(param, context),

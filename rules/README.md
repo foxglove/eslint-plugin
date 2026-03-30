@@ -10,7 +10,7 @@ Prohibit boolean parameters to functions, including optional parameters and defa
 
 In languages without [argument labels](https://docs.swift.org/swift-book/LanguageGuide/Functions.html), boolean parameters often point to an API anti-pattern called the [**boolean trap**](https://ariya.io/2011/08/hall-of-api-shame-boolean-trap). For example, with a function like `repaint(immediate: boolean)`, a reader looking at a call site sees `repaint(true);` and loses key context that `true` means the repaint should be `immediate`.
 
-The preferred alternative is to use a **string union** so that call sites are self-documenting (e.g., `draw("immediate")` instead of `draw(true)`). Wrapping the boolean in an options object is also acceptable.
+The preferred alternative is to use a **string union** so that call sites are self-documenting (e.g., `draw("immediate")` instead of `draw(true)`). Wrapping the boolean in an options object is also acceptable, and may be a better choice when you anticipate the function accepting additional options in the future — an options object is easier to extend without changing existing call sites.
 
 This rule does currently allow unions of booleans and other types like `value: boolean | number`. This approach was chosen because some common library types like `React.ReactNode` are unions of primitives, and it would be too noisy to prohibit all of these.
 
