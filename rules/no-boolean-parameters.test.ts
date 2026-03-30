@@ -3,7 +3,7 @@ import { TSESLint } from "@typescript-eslint/utils";
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const rule = require("./no-boolean-parameters") as TSESLint.RuleModule<
-  "booleanTrap" | "wrapParamInObject",
+  "booleanTrap" | "useStringUnion" | "wrapParamInObject",
   [{ allowLoneParameter: boolean }]
 >;
 
@@ -38,6 +38,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'foo'` },
           suggestions: [
             {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `function foo(a: "a" | "not-a") {}`,
+            },
+            {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
               output: "function foo({ a }: { a: boolean }) {}",
@@ -54,6 +59,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'foo'` },
           suggestions: [
             {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `function foo(a: "a" | "not-a" | undefined) {}`,
+            },
+            {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
               output: "function foo({ a }: { a: boolean | undefined }) {}",
@@ -69,6 +79,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           messageId: "booleanTrap",
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'foo'` },
           suggestions: [
+            {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `function foo(a: "a" | "not-a") {}`,
+            },
             {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
@@ -87,6 +102,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'foo'` },
           suggestions: [
             {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `function foo(a: "a" | "not-a" = "not-a") {}`,
+            },
+            {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a = false }" },
               output: "function foo({ a = false }: { a: boolean }) {}",
@@ -102,6 +122,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           messageId: "booleanTrap",
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'foo'` },
           suggestions: [
+            {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `function foo(a: "a" | "not-a" = "a") {}`,
+            },
             {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a = true }" },
@@ -119,6 +144,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'foo'` },
           suggestions: [
             {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `function foo(a?: "a" | "not-a") {}`,
+            },
+            {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
               output: "function foo({ a }: { a?: false }) {}",
@@ -134,6 +164,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           messageId: "booleanTrap",
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'foo'` },
           suggestions: [
+            {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `function foo(a: "a" | "not-a" | undefined = "not-a") {}`,
+            },
             {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a = false }" },
@@ -152,6 +187,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'foo'` },
           suggestions: [
             {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `const foo = function (a: "a" | "not-a") {}`,
+            },
+            {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
               output: "const foo = function ({ a }: { a: boolean }) {}",
@@ -167,6 +207,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           messageId: "booleanTrap",
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'foo'` },
           suggestions: [
+            {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `type B = boolean; function foo(a: "a" | "not-a") {}`,
+            },
             {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
@@ -184,6 +229,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           data: { paramInfo: ` 'a'`, funcInfo: `` },
           suggestions: [
             {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `((a: "a" | "not-a") => {})`,
+            },
+            {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
               output: "(({ a }: { a: boolean }) => {})",
@@ -199,6 +249,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           messageId: "booleanTrap",
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'x'` },
           suggestions: [
+            {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `({ x(a: "a" | "not-a") {} })`,
+            },
             {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
@@ -216,6 +271,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'x'` },
           suggestions: [
             {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `({ x: (a: "a" | "not-a") => {} })`,
+            },
+            {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
               output: "({ x: ({ a }: { a: boolean }) => {} })",
@@ -231,6 +291,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           messageId: "booleanTrap",
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'x'` },
           suggestions: [
+            {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `function x(a: "a" | "not-a") {}`,
+            },
             {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
@@ -248,6 +313,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'x'` },
           suggestions: [
             {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `async function x(a: "a" | "not-a") {}`,
+            },
+            {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
               output: "async function x({ a }: { a: boolean }) {}",
@@ -263,6 +333,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           messageId: "booleanTrap",
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'x'` },
           suggestions: [
+            {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `class C { x(a: "a" | "not-a") {} }`,
+            },
             {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
@@ -280,6 +355,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'x'` },
           suggestions: [
             {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `class C { x?: (a: "a" | "not-a") => void; }`,
+            },
+            {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
               output: "class C { x?: ({ a }: { a: boolean }) => void; }",
@@ -295,6 +375,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           messageId: "booleanTrap",
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'x'` },
           suggestions: [
+            {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `abstract class C { abstract x(a: "a" | "not-a"): void; }`,
+            },
             {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
@@ -312,6 +397,11 @@ ruleTester.run("no-boolean-parameters", rule, {
           messageId: "booleanTrap",
           data: { paramInfo: ` 'a'`, funcInfo: ` to 'x'` },
           suggestions: [
+            {
+              messageId: "useStringUnion",
+              data: { union: `"a" | "not-a"` },
+              output: `type T = { x?: (a: "a" | "not-a") => void; }`,
+            },
             {
               messageId: "wrapParamInObject",
               data: { pattern: "{ a }" },
