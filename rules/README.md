@@ -26,9 +26,9 @@ Examples of **correct** code for this rule:
 
 ```ts
 // Preferred: use a string union
-function draw(immediate: "immediate" | "not-immediate") {}
-const draw = (immediate?: "immediate" | "not-immediate") => {};
-const draw = (immediate: "immediate" | "not-immediate" = "not-immediate") => {};
+function draw(immediate: "immediate" | "lazy") {}
+const draw = (immediate?: "immediate" | "lazy") => {};
+const draw = (immediate: "immediate" | "lazy" = "lazy") => {};
 
 // Alternative: wrap in an options object
 function draw({ immediate }: { immediate: boolean }) {}

@@ -79,8 +79,8 @@ function getStringUnionSuggestions(param, context) {
     return suggestions;
   }
 
-  const positiveValue = `"${paramName}"`;
-  const negativeValue = `"not-${paramName}"`;
+  const positiveValue = `"a"`;
+  const negativeValue = `"b"`;
 
   // Collect non-boolean union parts from the AST type annotation
   /** @type {string[]} */

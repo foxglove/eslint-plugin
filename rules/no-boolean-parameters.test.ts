@@ -39,8 +39,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `function foo(a: "a" | "not-a") {}`,
+              data: { union: `"a" | "b"` },
+              output: `function foo(a: "a" | "b") {}`,
             },
             {
               messageId: "wrapParamInObject",
@@ -60,8 +60,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `function foo(a: "a" | "not-a" | undefined) {}`,
+              data: { union: `"a" | "b"` },
+              output: `function foo(a: "a" | "b" | undefined) {}`,
             },
             {
               messageId: "wrapParamInObject",
@@ -81,8 +81,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `function foo(a: "a" | "not-a") {}`,
+              data: { union: `"a" | "b"` },
+              output: `function foo(a: "a" | "b") {}`,
             },
             {
               messageId: "wrapParamInObject",
@@ -103,8 +103,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `function foo(a: "a" | "not-a" = "not-a") {}`,
+              data: { union: `"a" | "b"` },
+              output: `function foo(a: "a" | "b" = "b") {}`,
             },
             {
               messageId: "wrapParamInObject",
@@ -124,8 +124,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `function foo(a: "a" | "not-a" = "a") {}`,
+              data: { union: `"a" | "b"` },
+              output: `function foo(a: "a" | "b" = "a") {}`,
             },
             {
               messageId: "wrapParamInObject",
@@ -145,8 +145,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `function foo(a?: "a" | "not-a") {}`,
+              data: { union: `"a" | "b"` },
+              output: `function foo(a?: "a" | "b") {}`,
             },
             {
               messageId: "wrapParamInObject",
@@ -166,8 +166,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `function foo(a: "a" | "not-a" | undefined = "not-a") {}`,
+              data: { union: `"a" | "b"` },
+              output: `function foo(a: "a" | "b" | undefined = "b") {}`,
             },
             {
               messageId: "wrapParamInObject",
@@ -188,8 +188,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `const foo = function (a: "a" | "not-a") {}`,
+              data: { union: `"a" | "b"` },
+              output: `const foo = function (a: "a" | "b") {}`,
             },
             {
               messageId: "wrapParamInObject",
@@ -209,8 +209,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `type B = boolean; function foo(a: "a" | "not-a") {}`,
+              data: { union: `"a" | "b"` },
+              output: `type B = boolean; function foo(a: "a" | "b") {}`,
             },
             {
               messageId: "wrapParamInObject",
@@ -230,8 +230,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `((a: "a" | "not-a") => {})`,
+              data: { union: `"a" | "b"` },
+              output: `((a: "a" | "b") => {})`,
             },
             {
               messageId: "wrapParamInObject",
@@ -251,8 +251,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `({ x(a: "a" | "not-a") {} })`,
+              data: { union: `"a" | "b"` },
+              output: `({ x(a: "a" | "b") {} })`,
             },
             {
               messageId: "wrapParamInObject",
@@ -272,8 +272,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `({ x: (a: "a" | "not-a") => {} })`,
+              data: { union: `"a" | "b"` },
+              output: `({ x: (a: "a" | "b") => {} })`,
             },
             {
               messageId: "wrapParamInObject",
@@ -293,8 +293,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `function x(a: "a" | "not-a") {}`,
+              data: { union: `"a" | "b"` },
+              output: `function x(a: "a" | "b") {}`,
             },
             {
               messageId: "wrapParamInObject",
@@ -314,8 +314,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `async function x(a: "a" | "not-a") {}`,
+              data: { union: `"a" | "b"` },
+              output: `async function x(a: "a" | "b") {}`,
             },
             {
               messageId: "wrapParamInObject",
@@ -335,8 +335,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `class C { x(a: "a" | "not-a") {} }`,
+              data: { union: `"a" | "b"` },
+              output: `class C { x(a: "a" | "b") {} }`,
             },
             {
               messageId: "wrapParamInObject",
@@ -356,8 +356,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `class C { x?: (a: "a" | "not-a") => void; }`,
+              data: { union: `"a" | "b"` },
+              output: `class C { x?: (a: "a" | "b") => void; }`,
             },
             {
               messageId: "wrapParamInObject",
@@ -377,8 +377,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `abstract class C { abstract x(a: "a" | "not-a"): void; }`,
+              data: { union: `"a" | "b"` },
+              output: `abstract class C { abstract x(a: "a" | "b"): void; }`,
             },
             {
               messageId: "wrapParamInObject",
@@ -399,8 +399,8 @@ ruleTester.run("no-boolean-parameters", rule, {
           suggestions: [
             {
               messageId: "useStringUnion",
-              data: { union: `"a" | "not-a"` },
-              output: `type T = { x?: (a: "a" | "not-a") => void; }`,
+              data: { union: `"a" | "b"` },
+              output: `type T = { x?: (a: "a" | "b") => void; }`,
             },
             {
               messageId: "wrapParamInObject",
