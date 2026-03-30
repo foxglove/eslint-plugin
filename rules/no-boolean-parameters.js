@@ -2,7 +2,7 @@ const { ESLintUtils } = require("@typescript-eslint/utils");
 const { unionTypeParts } = require("tsutils");
 const ts = require("typescript");
 
-/** @typedef {"booleanTrap" | "wrapParamInObject"} MessageIds */
+/** @typedef {"booleanTrap" | "useStringUnion" | "wrapParamInObject"} MessageIds */
 /** @typedef {[{ allowLoneParameter: boolean }]} Options */
 
 /**
@@ -52,6 +52,84 @@ function getData(param) {
   }
 
   return { paramName, funcName };
+}
+
+/**
+ * @param {import("@typescript-eslint/typescript-estree").TSESTree.Node} param
+ * @param {import("@typescript-eslint/utils").TSESLint.RuleContext<MessageIds, Options>} context
+ */
+function getStringUnionSuggestions(param, context) {
+  const { sourceCode } = context;
+  /** @type {import("@typescript-eslint/utils").TSESLint.SuggestionReportDescriptor<MessageIds>[]} */
+  const suggestions = [];
+
+  /** @type {string | undefined} */
+  let paramName;
+  /** @type {import("@typescript-eslint/typescript-estree").TSESTree.Identifier | undefined} */
+  let paramNode;
+  if (param.type === "AssignmentPattern" && param.left.type === "Identifier") {
+    paramName = param.left.name;
+    paramNode = param.left;
+  } else if (param.type === "Identifier") {
+    paramName = param.name;
+    paramNode = param;
+  }
+
+  if (!paramName || !paramNode) {
+    return suggestions;
+  }
+
+  const positiveValue = `"${paramName}"`;
+  const negativeValue = `"not-${paramName}"`;
+
+  // Collect non-boolean union parts from the AST type annotation
+  /** @type {string[]} */
+  const nonBooleanParts = [];
+  if (paramNode.typeAnnotation) {
+    const typeNode = paramNode.typeAnnotation.typeAnnotation;
+    if (typeNode.type === "TSUnionType") {
+      for (const member of typeNode.types) {
+        if (
+          member.type === "TSUndefinedKeyword" ||
+          member.type === "TSNullKeyword" ||
+          member.type === "TSVoidKeyword"
+        ) {
+          nonBooleanParts.push(sourceCode.getText(member));
+        }
+      }
+    }
+  }
+
+  // Build type string
+  let typeStr = `${positiveValue} | ${negativeValue}`;
+  if (nonBooleanParts.length > 0) {
+    typeStr += ` | ${nonBooleanParts.join(" | ")}`;
+  }
+
+  // Build default value mapping: true → positive, false → negative
+  let defaultStr = "";
+  if (param.type === "AssignmentPattern") {
+    const defaultText = sourceCode.getText(param.right);
+    if (defaultText === "true") {
+      defaultStr = ` = ${positiveValue}`;
+    } else if (defaultText === "false") {
+      defaultStr = ` = ${negativeValue}`;
+    }
+  }
+
+  const optional = paramNode.optional ? "?" : "";
+  const replacement = `${paramName}${optional}: ${typeStr}${defaultStr}`;
+  const union = `${positiveValue} | ${negativeValue}`;
+
+  suggestions.push({
+    messageId: "useStringUnion",
+    data: { union },
+    fix(fixer) {
+      return fixer.replaceText(param, replacement);
+    },
+  });
+
+  return suggestions;
 }
 
 /**
@@ -112,6 +190,7 @@ module.exports = {
     ],
     messages: {
       booleanTrap: `Don't use raw boolean value{{paramInfo}} as a parameter{{funcInfo}}; call sites will appear ambiguous (the "boolean trap")`,
+      useStringUnion: `Replace with string union {{union}}`,
       wrapParamInObject: `Replace with {{pattern}}`,
     },
   },
@@ -159,7 +238,10 @@ module.exports = {
                 paramInfo: paramName ? ` '${paramName}'` : "",
                 funcInfo: funcName ? ` to '${funcName}'` : "",
               },
-              suggest: getSuggestions(param, context),
+              suggest: [
+                ...getStringUnionSuggestions(param, context),
+                ...getSuggestions(param, context),
+              ],
             });
           }
         },
