@@ -11,6 +11,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "**/*.js",
+    "plugin.js",
     "dist"
   ],
   "packageManager": "yarn@4.12.0",
