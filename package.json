@@ -1,6 +1,6 @@
 {
   "name": "@foxglove/eslint-plugin",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Foxglove ESLint rules and configuration",
   "license": "MIT",
   "repository": {
@@ -11,6 +11,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "**/*.js",
+    "plugin.js",
     "dist"
   ],
   "packageManager": "yarn@4.12.0",
